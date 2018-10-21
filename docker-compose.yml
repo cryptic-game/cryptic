@@ -14,7 +14,7 @@ services:
     image: useto/cryptic-user
     restart: always
     ports:
-        - "1240:1240"
+        - "1240:80"
     depends_on:
         - db
     environment:
@@ -22,4 +22,3 @@ services:
         MYSQL_DATABASE: cryptic
         MYSQL_USERNAME: cryptic
         MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
-        DEBUG: 0
