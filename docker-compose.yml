@@ -22,3 +22,16 @@ services:
         MYSQL_DATABASE: cryptic
         MYSQL_USERNAME: cryptic
         MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
+  s_device:
+    container_name: cryptic_device_1
+    image: useto/cryptic-device
+    restart: always
+    ports:
+        - "1241:80"
+    depends_on:
+        - db
+    environment:
+        MYSQL_HOSTNAME: "db"
+        MYSQL_DATABASE: cryptic
+        MYSQL_USERNAME: cryptic
+        MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
