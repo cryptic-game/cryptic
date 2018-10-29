@@ -35,7 +35,7 @@ services:
         MYSQL_DATABASE: cryptic
         MYSQL_USERNAME: cryptic
         MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
-        auth_api: "http://127.0.0.1:1240/auth/"
+        AUTH_API: "http://127.0.0.1:1240/auth/"
   s_currency:
     container_name: cryptic_currency_1
     image: useto/cryptic-currency
@@ -49,7 +49,7 @@ services:
        MYSQL_DATABASE: cryptic
        MYSQL_USERNAME: cryptic
        MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
-       auth_api: "http://127.0.0.1:1240/auth/" 
+       AUTH_API: "http://127.0.0.1:1240/auth/" 
   s_service:
     container_name: cryptic_service_1
     image: useto/cryptic-service
@@ -63,4 +63,4 @@ services:
       MYSQL_DATABASE: cryptic
       MYSQL_USERNAME: cryptic
       MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
-      auth_api: "http://127.0.0.1:1240/auth/" 
+      AUTH_API: "http://127.0.0.1:1240/auth/" 
