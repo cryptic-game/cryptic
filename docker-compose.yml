@@ -22,6 +22,7 @@ services:
         MYSQL_DATABASE: cryptic
         MYSQL_USERNAME: cryptic
         MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
+        DEVICE_API: "http://127.0.0.1:1241/"
   s_device:
     container_name: cryptic_device_1
     image: useto/cryptic-device
@@ -35,7 +36,7 @@ services:
         MYSQL_DATABASE: cryptic
         MYSQL_USERNAME: cryptic
         MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
-        AUTH_API: "http://127.0.0.1:1240/auth/"
+        AUTH_API: "http://127.0.0.1:1240/"
   s_currency:
     container_name: cryptic_currency_1
     image: useto/cryptic-currency
@@ -49,7 +50,7 @@ services:
        MYSQL_DATABASE: cryptic
        MYSQL_USERNAME: cryptic
        MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
-       AUTH_API: "http://127.0.0.1:1240/auth/" 
+       AUTH_API: "http://127.0.0.1:1240/" 
   s_service:
     container_name: cryptic_service_1
     image: useto/cryptic-service
@@ -63,4 +64,4 @@ services:
       MYSQL_DATABASE: cryptic
       MYSQL_USERNAME: cryptic
       MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
-      AUTH_API: "http://127.0.0.1:1240/auth/" 
+      AUTH_API: "http://127.0.0.1:1240/" 
