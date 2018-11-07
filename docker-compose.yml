@@ -65,3 +65,9 @@ services:
       MYSQL_USERNAME: cryptic
       MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
       AUTH_API: "http://127.0.0.1:1240/" 
+  f_frontend:
+    container_name: cryptic_frontend_1
+    image: useto/cryptic-frontend
+    restart: always
+    ports:
+        - "8050:80"
