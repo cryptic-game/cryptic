@@ -64,7 +64,8 @@ services:
       MYSQL_DATABASE: cryptic
       MYSQL_USERNAME: cryptic
       MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
-      AUTH_API: "http://127.0.0.1:1240/" 
+      AUTH_API: "https://user.api.cryptic-game.net/"
+      DEVICE_API: "https://device.api.cryptic-game.net/" 
   f_frontend:
     container_name: cryptic_frontend_1
     image: useto/cryptic-frontend
