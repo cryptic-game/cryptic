@@ -46,7 +46,7 @@ You can become apart of it by contributing to cryptic.
 
 ## Project Structure
 
-![project structure](https://raw.githubusercontent.com/cryptic-game/cryptic/master/team_concept.svg)
+![project structure](https://raw.githubusercontent.com/cryptic-game/cryptic/master/team_concept.png)
 
 ## Visit us!
 Website: https://cryptic-game.net/
