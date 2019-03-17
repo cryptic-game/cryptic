@@ -49,7 +49,7 @@ You can become apart of it by contributing to cryptic.
 ![project structure](https://raw.githubusercontent.com/cryptic-game/cryptic/master/team_concept.png)
 
 ## Visit us!
-Website: https://cryptic-game.net/
-Discord: https://discord.me/cryptic-game
-YouTube: https://www.youtube.com/channel/UCD1cNWfpafkrCxQqWezpZjQ
-Mail: faq@crptic-game.net
+Website: https://cryptic-game.net/  
+Discord: https://discord.me/cryptic-game  
+YouTube: https://www.youtube.com/channel/UCD1cNWfpafkrCxQqWezpZjQ  
+Mail: faq@crptic-game.net  
