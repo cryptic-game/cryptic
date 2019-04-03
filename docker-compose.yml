@@ -1,74 +1,67 @@
 version: '3.1'
 services:
-  db:
-    container_name: cryptic_mysql_1
-    image: mysql
-    restart: always
-    environment:
-        MYSQL_USER: cryptic
-        MYSQL_PASSWORD: YOUR_PASSWORD  # TODO pick a secure password
-        MYSQL_DATABASE: cryptic
-        MYSQL_RANDOM_ROOT_PASSWORD: 1
-  s_user:
-    container_name: cryptic_user_1
-    image: useto/cryptic-user
-    restart: always
-    ports:
-        - "1240:80"
-    depends_on:
-        - db
-    environment:
-        MYSQL_HOSTNAME: "db"
-        MYSQL_DATABASE: cryptic
-        MYSQL_USERNAME: cryptic
-        MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
-        DEVICE_API: "http://127.0.0.1:1241/"
-  s_device:
-    container_name: cryptic_device_1
-    image: useto/cryptic-device
-    restart: always
-    ports:
-        - "1241:80"
-    depends_on:
-        - db
-    environment:
-        MYSQL_HOSTNAME: "db"
-        MYSQL_DATABASE: cryptic
-        MYSQL_USERNAME: cryptic
-        MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
-        AUTH_API: "http://127.0.0.1:1240/"
-  s_currency:
-    container_name: cryptic_currency_1
-    image: useto/cryptic-currency
-    restart: always
-    ports:
-        - "1242:80"
-    depends_on:
-        - db
-    environment:
-       MYSQL_HOSTNAME: "db"
-       MYSQL_DATABASE: cryptic
-       MYSQL_USERNAME: cryptic
-       MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
-       AUTH_API: "http://127.0.0.1:1240/" 
-  s_service:
-    container_name: cryptic_service_1
-    image: useto/cryptic-service
-    restart: always
-    ports:
-        - "1243:80"
-    depends_on:
-        - db
-    environment:
-      MYSQL_HOSTNAME: "db"
-      MYSQL_DATABASE: cryptic
-      MYSQL_USERNAME: cryptic
-      MYSQL_PASSWORD: YOUR_PASSWORD  # TODO adjust this line
-      AUTH_API: "https://user.api.cryptic-game.net/"
-      DEVICE_API: "https://device.api.cryptic-game.net/" 
-  f_frontend:
-    container_name: cryptic_frontend_1
-    image: useto/cryptic-frontend
-    restart: always
-    ports:
-        - "8050:80"
+    server:
+        container_name: cryptic_game_server
+        image: useto/cryptic-game-server
+        restart: always
+        environment:
+            MSSOCKET_HOST: '127.0.0.1'
+            MSSOCKET_PORT: 1239
+            WEBSOCKET_HOST: '0.0.0.0'
+            WEBSOCKET_PORT: 80
+            HTTP_PORT: 8080
+            AUTH_ENABLED: 'true'
+            STORAGE_LOCATION: 'data/'
+        ports:
+            - "8080:8080"
+            - "80:80"
+        volumes:
+            - './data/server/:/data/'
+        networks:
+            - frontend
+            - backend
+    ms_device:
+        container_name: cryptic_device
+        image: useto/cryptic-device
+        restart: always
+        depends_on:
+            - server
+        environment:
+            MSSOCKET_HOST: 'server'
+            MSSOCKET_PORT: 1239
+            STORAGE_LOCATION: 'data/'
+        volumes:
+            - './data/ms/device/:/data/'
+        networks:
+            - backend
+    ms_currency:
+        container_name: cryptic_currency
+        image: useto/cryptic-currency
+        restart: always
+        depends_on:
+            - server
+        environment:
+            MSSOCKET_HOST: 'server'
+            MSSOCKET_PORT: 1239
+            STORAGE_LOCATION: 'data/'
+        volumes:
+            - './data/ms/currency/:/data/'
+        networks:
+            - backend
+    ms_service:
+        container_name: cryptic_service
+        image: useto/cryptic-service
+        restart: always
+        depends_on:
+            - server
+        environment:
+             MSSOCKET_HOST: 'server'
+             MSSOCKET_PORT: 1239 
+             STORAGE_LOCATION: 'data/'
+        volumes:
+            - './data/ms/service/:/data/'
+        networks:
+            - backend
+networks:
+    frontend:
+    backend:
