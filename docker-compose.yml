@@ -1,11 +1,11 @@
-version: '3.1'
+version: '3.2'
 services:
     server:
         container_name: cryptic_game_server
         image: useto/cryptic-game-server
         restart: always
         environment:
-            MSSOCKET_HOST: '127.0.0.1'
+            MSSOCKET_HOST: '0.0.0.0'
             MSSOCKET_PORT: 1239
             WEBSOCKET_HOST: '0.0.0.0'
             WEBSOCKET_PORT: 80
@@ -16,7 +16,9 @@ services:
             - "8080:8080"
             - "80:80"
         volumes:
-            - './data/server/:/data/'
+            - type: 'bind'
+              source: './data/server'
+              target: '/app/data'
         networks:
             - frontend
             - backend
@@ -27,11 +29,13 @@ services:
         depends_on:
             - server
         environment:
-            MSSOCKET_HOST: 'server'
-            MSSOCKET_PORT: 1239
+            SERVER_HOST: 'server'
+            SERVER_PORT: 1239
             STORAGE_LOCATION: 'data/'
         volumes:
-            - './data/ms/device/:/data/'
+            - type: 'bind'
+              source: './data/ms/device'
+              target: '/app/data'
         networks:
             - backend
     ms_currency:
@@ -41,11 +45,13 @@ services:
         depends_on:
             - server
         environment:
-            MSSOCKET_HOST: 'server'
-            MSSOCKET_PORT: 1239
+            SERVER_HOST: 'server'
+            SERVER_PORT: 1239
             STORAGE_LOCATION: 'data/'
         volumes:
-            - './data/ms/currency/:/data/'
+            - type: 'bind'
+              source: './data/ms/currency'
+              target: '/app/data'
         networks:
             - backend
     ms_service:
@@ -55,11 +61,13 @@ services:
         depends_on:
             - server
         environment:
-             MSSOCKET_HOST: 'server'
-             MSSOCKET_PORT: 1239 
+             SERVER_HOST: 'server'
+             SERVER_PORT: 1239 
              STORAGE_LOCATION: 'data/'
         volumes:
-            - './data/ms/service/:/data/'
+            - type: 'bind'
+              source: './data/ms/service'
+              target: '/app/data'
         networks:
             - backend
 networks:
