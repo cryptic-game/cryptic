@@ -1,4 +1,3 @@
-
 # Github
 ## Branches
 Alle Branches müssen folgend benannt werden:
@@ -24,7 +23,7 @@ Bei Merges muss die Commit Message wie folgt sein `merge from SOURCE to DESTINAT
 ### Titel
 Titel der assoziierten Issue *oder* eine kurze Beschreibung, wenn keine Issue existiert.
 ### Inhalt
-In Pull Request müssen alle Felder des Templates sinnvoll ausgefüllt werden. Falls dies nicht der Fall ist wird die Pull Request geschlossen und mit dem Label *malformed* getagged.  Sie kann, nachdem sie korrigiert wurde, jederzeit wiedereröffnet werden. Als Hilfsmittel zur Lösung kann hier auch "Squash commits" genutzt werden.
+In der Pull Request müssen alle Felder des Templates sinnvoll ausgefüllt werden. Falls dies nicht der Fall ist wird die Pull Request geschlossen und mit dem Label *malformed* getagged.  Sie kann, nachdem sie korrigiert wurde, jederzeit wiedereröffnet werden. Als Hilfsmittel zur Lösung kann hier auch "Squash commits" genutzt werden.
 ## Issues
 ### Titel
 Der Titel einer Issue soll eine *sehr* knappe Zusammenfassung des Inhalts sein und darf keine Sonderzeichen wie z.B. `[]()\/;+-*` enthalten. Die einzige Ausnahme dazu ist `:`.
@@ -40,7 +39,7 @@ Grundsätzlich ist sich an [PEP 8](https://www.python.org/dev/peps/pep-0008/) zu
 	- Spezifikationen
 		- Line Length: 120
  		- Variablen und Funktionen Naming Convention
-Grundsätzlich ist sich hier an alles zu halten was in [diesem]([https://dev.to/somedood/a-grammar-based-naming-convention-13jf](https://dev.to/somedood/a-grammar-based-naming-convention-13jf)) dev.to geschrieben wurde, mit der Ausnahme, dass Funktionen natürlich mittels *snake_case* benannt werden und Variablen vom Typen *bool* nicht den Prefix *is-* haben müssen.
+Grundsätzlich ist sich hier an alles zu halten was in [diesem](https://dev.to/somedood/a-grammar-based-naming-convention-13jf) dev.to geschrieben wurde, mit der Ausnahme, dass Funktionen natürlich mittels *snake_case* benannt werden und Variablen vom Typen *bool* nicht den Prefix *is-* haben müssen.
 	- Ausnahmen (müssen z.B. mittels `# noinspection PyPep8Naming` und einer Erklärung darüber angemerkt werden)
 		- Wenn Klassen als Variable gespeichert werden, z.B. `self.Session: sessionmake = sessionmaker(...)`
 # Anders, Verbesserungen & Änderungen
