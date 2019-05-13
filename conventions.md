@@ -11,14 +11,14 @@ Es ist nichts direkt in den Master Branch zu commiten. Es darf nur der Experimen
 #### Hotfixes
 Hotfixes sind Fehlern vorbehalten, welche so gravierend sind, dass diese schnell und gezielt behoben werden müssen. Das heißt, dass ein Bug welcher zum Beispiel alle 24h einen Service zum partiellen Crash führt, kein Hotfix ist, einer, wodurch aber jegliche Infrastruktur lahmgelegt wird oder alle Passwörter geleakt werden könnten, schon. Hotfixes müssen als Commit Message Titel `hotfix: TITEL`  haben.
 ## Commit Messages
-Commit Messages müssen folgendem Template entsprechen: `TITEL (#ISSUE_ID)`.
+Commit Messages müssen folgendem Template entsprechen: `TITEL`.
 - Commit Messages müssen als Titel eine kurze und **sinnvolle** Beschreibung enthalten, d.h. etwas einfaches wie "*bug fix*" ist unakzeptabel. Zudem sind besondere Zeichen wie `;:<>-+[]()` usw. unakzeptabel
 - Commit Messages müssen in Englisch und im Past Tense verfasst werden
 - Genauere Beschreibungen sind akzeptabel, solange diese nicht in der Titelzeile der Commit Message sind
 - Sollte der Commit ohne Issue erfolgen, darf diese weg gelassen werden.
 - Ausnahmen sind Hotfixes. Mehr dazu bei Hotfixes.
 
-Bei Merges muss die Commit Message wie folgt sein `merge from SOURCE to DESTINATION`.
+Bei Merges muss die Commit Message wie folgt sein `merge from SOURCE to DESTINATION (#PR-ID)`.
 ## Pull Requests
 ### Titel
 Titel der assoziierten Issue *oder* eine kurze Beschreibung, wenn keine Issue existiert.
