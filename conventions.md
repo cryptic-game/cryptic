@@ -3,7 +3,7 @@
 Alle Branches müssen folgend benannt werden:
 * `master`
 * `experimental`
-* `issue/ISSUE-ID; ISSUE-TITLE`
+* `issue/ISSUE-ID ISSUE-TITLE`
 ### Experimental
 In den Experimental Branch dürfen nur Branches mit dem Namen `issue/ISSUE-ID` oder User Branches gemerged werden. Den Heads ist es auch bei dem Verbessern von z.B. Rechtschreibfehlern ohne Issue auf *experimental* zu pushen. Dieser Umstand sollte aber so selten wie möglich stattfinden.
 ### Master Branch
