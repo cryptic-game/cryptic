@@ -1,8 +1,8 @@
 version: '3.2'
 services:
     server:
-        container_name: cryptic_game_server
-        image: useto/cryptic-game-server
+        container_name: cryptic_game_server_debug
+        image: useto/cryptic-game-server:experimental
         restart: always
         environment:
             MSSOCKET_HOST: '0.0.0.0'
@@ -12,6 +12,7 @@ services:
             HTTP_PORT: 8080
             AUTH_ENABLED: 'true'
             STORAGE_LOCATION: 'data/'
+            PRODUCTIVE: 'false'
         ports:
             - "8080:8080"
             - "80:80"
@@ -23,14 +24,15 @@ services:
             - frontend
             - backend
     ms_device:
-        container_name: cryptic_device
-        image: useto/cryptic-device
+        container_name: cryptic_device_debug
+        image: useto/cryptic-device:experimental
         restart: always
         depends_on:
             - server
         environment:
             SERVER_HOST: 'server'
             SERVER_PORT: 1239
+            MODE: 'debug'
             STORAGE_LOCATION: 'data/'
         volumes:
             - type: 'bind'
@@ -39,14 +41,15 @@ services:
         networks:
             - backend
     ms_currency:
-        container_name: cryptic_currency
-        image: useto/cryptic-currency
+        container_name: cryptic_currency_debug
+        image: useto/cryptic-currency:experimental
         restart: always
         depends_on:
             - server
         environment:
             SERVER_HOST: 'server'
             SERVER_PORT: 1239
+            MODE: 'debug'
             STORAGE_LOCATION: 'data/'
         volumes:
             - type: 'bind'
@@ -55,15 +58,16 @@ services:
         networks:
             - backend
     ms_service:
-        container_name: cryptic_service
-        image: useto/cryptic-service
+        container_name: cryptic_service_debug
+        image: useto/cryptic-service:experimental
         restart: always
         depends_on:
             - server
         environment:
-             SERVER_HOST: 'server'
-             SERVER_PORT: 1239 
-             STORAGE_LOCATION: 'data/'
+            SERVER_HOST: 'server'
+            SERVER_PORT: 1239
+            MODE: 'debug'
+            STORAGE_LOCATION: 'data/'
         volumes:
             - type: 'bind'
               source: './data/ms/service'

@@ -5,7 +5,7 @@ services:
         image: mysql
         restart: always
         environment:
-            MYSQL_USER: cryptic 
+            MYSQL_USER: cryptic
             MYSQL_PASSWORD: cryptic
             MYSQL_DATABASE: cryptic
             MYSQL_RANDOM_ROOT_PASSWORD: 1
@@ -45,11 +45,11 @@ services:
         environment:
             SERVER_HOST: 'server'
             SERVER_PORT: 1239
-            STORAGE_LOCATION: 'data/'
-        volumes:
-            - type: 'bind'
-              source: './data/ms/device'
-              target: '/app/data'
+            MYSQL_HOSTNAME: 'db'
+            MYSQL_USERNAME: 'cryptic'
+            MYSQL_PASSWORD: 'cryptic'
+            MYSQL_PORT: 3306
+            MYSQL_DATABASE: 'cryptic'
         networks:
             - backend
     ms_currency:
@@ -61,11 +61,11 @@ services:
         environment:
             SERVER_HOST: 'server'
             SERVER_PORT: 1239
-            STORAGE_LOCATION: 'data/'
-        volumes:
-            - type: 'bind'
-              source: './data/ms/currency'
-              target: '/app/data'
+            MYSQL_HOSTNAME: 'db'
+            MYSQL_USERNAME: 'cryptic'
+            MYSQL_PASSWORD: 'cryptic'
+            MYSQL_PORT: 3306
+            MYSQL_DATABASE: 'cryptic'
         networks:
             - backend
     ms_service:
@@ -75,45 +75,13 @@ services:
         depends_on:
             - server
         environment:
-             SERVER_HOST: 'server'
-             SERVER_PORT: 1239 
-             STORAGE_LOCATION: 'data/'
-        volumes:
-            - type: 'bind'
-              source: './data/ms/service'
-              target: '/app/data'
-        networks:
-            - backend
-    ms_user:
-        container_name: cryptic_user
-        image: useto/cryptic-user
-        restart: always
-        depends_on:
-            - server
-        environment:
-             SERVER_HOST: 'server'
-             SERVER_PORT: 1239
-             STORAGE_LOCATION: 'data/'
-        volumes:
-            - type: 'bind'
-              source: './data/ms/user'
-              target: '/app/data'
-        networks:
-             - backend
-    ms_service:
-        container_name: cryptic_service
-        image: useto/cryptic-service
-        restart: always
-        depends_on:
-            - server
-        environment:
-             SERVER_HOST: 'server'
-             SERVER_PORT: 1239 
-             STORAGE_LOCATION: 'data/'
-        volumes:
-            - type: 'bind'
-              source: './data/ms/service'
-              target: '/app/data'
+            SERVER_HOST: 'server'
+            SERVER_PORT: 1239
+            MYSQL_HOSTNAME: 'db'
+            MYSQL_USERNAME: 'cryptic'
+            MYSQL_PASSWORD: 'cryptic'
+            MYSQL_PORT: 3306
+            MYSQL_DATABASE: 'cryptic'
         networks:
             - backend
 networks:
