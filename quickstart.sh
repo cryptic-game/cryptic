@@ -7,11 +7,11 @@ if [ -f "/etc/arch-release" ]; then
   echo "::: Arch linux detected but installing the basic dependencies is not yet implemented"
 elif [ -f "/etc/debian_version" ]; then
   echo "::: Debian based linux detected, updating system"
-  apt-get update
+  sudo apt-get update
   echo "::: Installing basic programs"
-  apt install -y git curl python3.7 python3-pip
+  sudo apt install -y git curl python3.7 python3-pip
   echo "::: Installing pipenv"
-  python3.7 -m pip install pipenv
+  sudo python3.7 -m pip install pipenv
 else
   echo "::: Unknown operating system, assuming that all necessary packages are installed..."
 fi

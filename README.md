@@ -38,6 +38,20 @@ At the end you have to create an account. After that you can become the stronges
 No matter what skills you have... ALL ARE HELPFUL!
 From design to development. For more information talk to us on discord or write us an email.
 
+### Development quickstart
+As we are a small project every help is appreciated and we need you.
+To allow you to help easily we created a quickstart script, that 
+downloads all microservices and automatically installs all their dependencies.
+You can run the script by running
+```
+curl -sSL https://github.com/cryptic-game/cryptic/blob/master/quickstart.sh | bash
+```
+in your favorite command line.
+It will also try to install system wide dependencies the setup script needs. At the moment only
+Debian based systems (or more accurately systems that use the Advanced Packaging Tool (apt))
+are supported. If you would like to implement the same thing for Arch Linux for example, 
+your help is very much appreciated.
+
 ## Organisation
 
 Behind cryptic exists a not profit-oriented team.
