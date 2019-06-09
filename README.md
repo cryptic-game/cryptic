@@ -44,7 +44,7 @@ To allow you to help easily we created a quickstart script, that
 downloads all microservices and automatically installs all their dependencies.
 You can run the script by running
 ```
-curl -sSL https://github.com/cryptic-game/cryptic/blob/master/quickstart.sh | bash
+curl -sSL https://raw.githubusercontent.com/cryptic-game/cryptic/blob/master/quickstart.sh | bash
 ```
 in your favorite command line.
 It will also try to install system wide dependencies the setup script needs. At the moment only

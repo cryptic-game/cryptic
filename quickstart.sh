@@ -25,4 +25,4 @@ cd cryptic
 echo "::: Installing dependencies for development environment installer"
 pipenv install
 echo "::: Cloning/Installing microservices and so on"
-python3.7 install-dev.py install
+pipenv run python install-dev.py install
