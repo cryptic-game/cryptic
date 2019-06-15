@@ -1,9 +1,22 @@
 version: '3.2'
 services:
+    db:
+        container_name: cryptic_game_mysql_debug
+        image: mysql
+        restart: always
+        environment:
+            MYSQL_USER: cryptic
+            MYSQL_PASSWORD: cryptic
+            MYSQL_DATABASE: cryptic
+            MYSQL_RANDOM_ROOT_PASSWORD: 1
+        networks:
+            - backend
     server:
         container_name: cryptic_game_server_debug
         image: useto/cryptic-game-server:experimental
         restart: always
+        depends_on:
+            - db
         environment:
             MSSOCKET_HOST: '0.0.0.0'
             MSSOCKET_PORT: 1239
@@ -11,15 +24,15 @@ services:
             WEBSOCKET_PORT: 80
             HTTP_PORT: 8080
             AUTH_ENABLED: 'true'
-            STORAGE_LOCATION: 'data/'
-            PRODUCTIVE: 'false'
+            MYSQL_HOSTNAME: 'db'
+            MYSQL_USERNAME: 'cryptic'
+            MYSQL_PASSWORD: 'cryptic'
+            MYSQL_PORT: 3306
+            MYSQL_DATABASE: 'cryptic'
+            PRODUCTIVE: 'true'
         ports:
             - "8080:8080"
             - "80:80"
-        volumes:
-            - type: 'bind'
-              source: './data/server'
-              target: '/app/data'
         networks:
             - frontend
             - backend
@@ -32,12 +45,11 @@ services:
         environment:
             SERVER_HOST: 'server'
             SERVER_PORT: 1239
-            MODE: 'debug'
-            STORAGE_LOCATION: 'data/'
-        volumes:
-            - type: 'bind'
-              source: './data/ms/device'
-              target: '/app/data'
+            MYSQL_HOSTNAME: 'db'
+            MYSQL_USERNAME: 'cryptic'
+            MYSQL_PASSWORD: 'cryptic'
+            MYSQL_PORT: 3306
+            MYSQL_DATABASE: 'cryptic'
         networks:
             - backend
     ms_currency:
@@ -49,12 +61,11 @@ services:
         environment:
             SERVER_HOST: 'server'
             SERVER_PORT: 1239
-            MODE: 'debug'
-            STORAGE_LOCATION: 'data/'
-        volumes:
-            - type: 'bind'
-              source: './data/ms/currency'
-              target: '/app/data'
+            MYSQL_HOSTNAME: 'db'
+            MYSQL_USERNAME: 'cryptic'
+            MYSQL_PASSWORD: 'cryptic'
+            MYSQL_PORT: 3306
+            MYSQL_DATABASE: 'cryptic'
         networks:
             - backend
     ms_service:
@@ -66,12 +77,27 @@ services:
         environment:
             SERVER_HOST: 'server'
             SERVER_PORT: 1239
-            MODE: 'debug'
-            STORAGE_LOCATION: 'data/'
-        volumes:
-            - type: 'bind'
-              source: './data/ms/service'
-              target: '/app/data'
+            MYSQL_HOSTNAME: 'db'
+            MYSQL_USERNAME: 'cryptic'
+            MYSQL_PASSWORD: 'cryptic'
+            MYSQL_PORT: 3306
+            MYSQL_DATABASE: 'cryptic'
+        networks:
+            - backend
+    ms_network:
+        container_name: cryptic_network_debug
+        image: useto/cryptic-network:experimental
+        restart: always
+        depends_on:
+            - server
+        environment:
+            MSSOCKET_HOST: 'server'
+            MSSOCKET_PORT: 1239
+            MYSQL_HOSTNAME: 'db'
+            MYSQL_USERNAME: 'cryptic'
+            MYSQL_PASSWORD: 'cryptic'
+            MYSQL_PORT: 3306
+            MYSQL_DATABASE: 'cryptic'
         networks:
             - backend
 networks:

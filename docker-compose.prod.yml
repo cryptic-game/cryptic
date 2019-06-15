@@ -84,6 +84,22 @@ services:
             MYSQL_DATABASE: 'cryptic'
         networks:
             - backend
+    ms_network:
+        container_name: cryptic_network
+        image: useto/cryptic-network
+        restart: always
+        depends_on:
+            - server
+        environment:
+            MSSOCKET_HOST: 'server'
+            MSSOCKET_PORT: 1239
+            MYSQL_HOSTNAME: 'db'
+            MYSQL_USERNAME: 'cryptic'
+            MYSQL_PASSWORD: 'cryptic'
+            MYSQL_PORT: 3306
+            MYSQL_DATABASE: 'cryptic'
+        networks:
+            - backend
 networks:
     frontend:
     backend:
