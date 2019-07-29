@@ -43,9 +43,13 @@ Grundsätzlich ist sich an [PEP 8](https://www.python.org/dev/peps/pep-0008/) zu
 Grundsätzlich ist sich hier an alles zu halten was in [diesem](https://dev.to/somedood/a-grammar-based-naming-convention-13jf) dev.to geschrieben wurde, mit der Ausnahme, dass Funktionen natürlich mittels *snake_case* benannt werden und Variablen vom Typen *bool* nicht den Prefix *is-* haben müssen.
 	- Ausnahmen (müssen z.B. mittels `# noinspection PyPep8Naming` und einer Erklärung darüber angemerkt werden)
 		- Wenn Klassen als Variable gespeichert werden, z.B. `self.Session: sessionmake = sessionmaker(...)`
+# Ausnahmen dieser Regelungen
+Diese Regelungen beziehen sich aktuell nur auf die Repositories, in welchen aktiv Entwicklung geschieht. Beispiele, für von den Regelungen ausgenommenen Repositories, sind `sound`, `gamedesign`, `cryptic` und `graphics`.
 # Anders, Verbesserungen & Änderungen
 - Falls es einen Umstand gibt, welcher hier nicht klar definiert ist, muss das mit dem korrekten Backend Head abgesprochen werden, und wird ggf. hier eingefügt.
 - Verbesserungsvorschläge sind wilkommen
 - Bei Änderungen sind schon Geschehene Pull Requests etc. nicht zu verändern.
+## Versionierung der Conventions
+Die Versionsnummer besteht aus zwei von einem Punkt gentrennten positiven natürlichen Zahlen, bei welcher die zweite inkrementiert wird, wenn ein Punkt näher bzw. klarer ausgeführt wird oder ein Rechtschreib- oder Grammatikfehler verbessert wird. Die erste Zahl wird ausschließlich bei einer inhaltlichen Veränderung, dem Hinzukommen oder dem Entfernen einer Regelung inkrementiert, wobei die zweite Zahl wieder auf Null gesetzt wird.
 # Version
-1.1
+2.0
