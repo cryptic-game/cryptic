@@ -52,4 +52,4 @@ You can become apart of it by contributing to cryptic.
 Website: https://cryptic-game.net/  
 Discord: https://discord.me/cryptic-game  
 YouTube: https://www.youtube.com/channel/UCD1cNWfpafkrCxQqWezpZjQ  
-Mail: faq@crptic-game.net  
+Mail: faq@cryptic-game.net  
