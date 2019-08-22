@@ -9,6 +9,8 @@ services:
       MYSQL_PASSWORD: cryptic
       MYSQL_DATABASE: cryptic
       MYSQL_RANDOM_ROOT_PASSWORD: 1
+    ports:
+      - "3306:3306"
     networks:
       - backend
   server:
@@ -33,6 +35,7 @@ services:
     ports:
       - "8080:8080"
       - "80:80"
+      - "1239:1239"
     networks:
       - frontend
       - backend
