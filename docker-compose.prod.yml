@@ -1,89 +1,133 @@
-version: '3.2'
+version: '3.7'
 services:
-    db:
-        container_name: cryptic_game_mysql
-        image: mysql
-        restart: always
-        environment:
-            MYSQL_USER: cryptic
-            MYSQL_PASSWORD: cryptic
-            MYSQL_DATABASE: cryptic
-            MYSQL_RANDOM_ROOT_PASSWORD: 1
-        networks:
-            - backend
-    server:
-        container_name: cryptic_game_server
-        image: useto/cryptic-game-server
-        restart: always
-        depends_on:
-            - db
-        environment:
-            MSSOCKET_HOST: '0.0.0.0'
-            MSSOCKET_PORT: 1239
-            WEBSOCKET_HOST: '0.0.0.0'
-            WEBSOCKET_PORT: 80
-            HTTP_PORT: 8080
-            AUTH_ENABLED: 'true'
-            MYSQL_HOSTNAME: 'db'
-            MYSQL_USERNAME: 'cryptic'
-            MYSQL_PASSWORD: 'cryptic'
-            MYSQL_PORT: 3306
-            MYSQL_DATABASE: 'cryptic'
-            PRODUCTIVE: 'true'
-        ports:
-            - "8080:8080"
-            - "80:80"
-        networks:
-            - frontend
-            - backend
-    ms_device:
-        container_name: cryptic_device
-        image: useto/cryptic-device
-        restart: always
-        depends_on:
-            - server
-        environment:
-            SERVER_HOST: 'server'
-            SERVER_PORT: 1239
-            MYSQL_HOSTNAME: 'db'
-            MYSQL_USERNAME: 'cryptic'
-            MYSQL_PASSWORD: 'cryptic'
-            MYSQL_PORT: 3306
-            MYSQL_DATABASE: 'cryptic'
-        networks:
-            - backend
-    ms_currency:
-        container_name: cryptic_currency
-        image: useto/cryptic-currency
-        restart: always
-        depends_on:
-            - server
-        environment:
-            SERVER_HOST: 'server'
-            SERVER_PORT: 1239
-            MYSQL_HOSTNAME: 'db'
-            MYSQL_USERNAME: 'cryptic'
-            MYSQL_PASSWORD: 'cryptic'
-            MYSQL_PORT: 3306
-            MYSQL_DATABASE: 'cryptic'
-        networks:
-            - backend
-    ms_service:
-        container_name: cryptic_service
-        image: useto/cryptic-service
-        restart: always
-        depends_on:
-            - server
-        environment:
-            SERVER_HOST: 'server'
-            SERVER_PORT: 1239
-            MYSQL_HOSTNAME: 'db'
-            MYSQL_USERNAME: 'cryptic'
-            MYSQL_PASSWORD: 'cryptic'
-            MYSQL_PORT: 3306
-            MYSQL_DATABASE: 'cryptic'
-        networks:
-            - backend
+  db:
+    container_name: cryptic_mysql
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_USER: cryptic
+      MYSQL_PASSWORD: cryptic
+      MYSQL_DATABASE: cryptic
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
+    networks:
+      - backend
+  server:
+    container_name: cryptic_server
+    image: useto/cryptic-game-server
+    restart: always
+    depends_on:
+      - db
+    environment:
+      MSSOCKET_HOST: '0.0.0.0'
+      MSSOCKET_PORT: 1239
+      WEBSOCKET_HOST: '0.0.0.0'
+      WEBSOCKET_PORT: 80
+      HTTP_PORT: 8080
+      AUTH_ENABLED: 'true'
+      MYSQL_HOSTNAME: 'db'
+      MYSQL_USERNAME: 'cryptic'
+      MYSQL_PASSWORD: 'cryptic'
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: 'cryptic'
+      PRODUCTIVE: 'true'
+    ports:
+      - "8080:8080"
+      - "80:80"
+    networks:
+      - frontend
+      - backend
+  ms_device:
+    container_name: cryptic_device
+    image: useto/cryptic-device
+    restart: always
+    depends_on:
+      - server
+    environment:
+      SERVER_HOST: 'server'
+      SERVER_PORT: 1239
+      MYSQL_HOSTNAME: 'db'
+      MYSQL_USERNAME: 'cryptic'
+      MYSQL_PASSWORD: 'cryptic'
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: 'cryptic'
+      DSN:
+      RELEASE:
+      PATH_LOGFILE:
+    networks:
+      - backend
+  ms_currency:
+    container_name: cryptic_currency
+    image: useto/cryptic-currency
+    restart: always
+    depends_on:
+      - server
+    environment:
+      SERVER_HOST: 'server'
+      SERVER_PORT: 1239
+      MYSQL_HOSTNAME: 'db'
+      MYSQL_USERNAME: 'cryptic'
+      MYSQL_PASSWORD: 'cryptic'
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: 'cryptic'
+      DSN:
+      RELEASE:
+      PATH_LOGFILE:
+    networks:
+      - backend
+  ms_service:
+    container_name: cryptic_service
+    image: useto/cryptic-service
+    restart: always
+    depends_on:
+      - server
+    environment:
+      SERVER_HOST: 'server'
+      SERVER_PORT: 1239
+      MYSQL_HOSTNAME: 'db'
+      MYSQL_USERNAME: 'cryptic'
+      MYSQL_PASSWORD: 'cryptic'
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: 'cryptic'
+      DSN:
+      RELEASE:
+      PATH_LOGFILE:
+    networks:
+      - backend
+  ms_inventory:
+    container_name: cryptic_inventory
+    image: useto/cryptic-inventory
+    restart: always
+    depends_on:
+      - server
+    environment:
+      SERVER_HOST: 'server'
+      SERVER_PORT: 1239
+      MYSQL_HOSTNAME: 'db'
+      MYSQL_USERNAME: 'cryptic'
+      MYSQL_PASSWORD: 'cryptic'
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: 'cryptic'
+      DSN:
+      RELEASE:
+      PATH_LOGFILE:
+    networks:
+      - backend
+  ms_network:
+    container_name: cryptic_network
+    image: useto/cryptic-network
+    restart: always
+    depends_on:
+      - server
+    environment:
+      MSSOCKET_HOST: 'server'
+      MSSOCKET_PORT: 1239
+      MYSQL_HOSTNAME: 'db'
+      MYSQL_USERNAME: 'cryptic'
+      MYSQL_PASSWORD: 'cryptic'
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: 'cryptic'
+    networks:
+      - backend
 networks:
-    frontend:
-    backend:
+  frontend:
+  backend:
