@@ -15,7 +15,7 @@ services:
       - backend
   server:
     container_name: cryptic_server_debug
-    image: useto/cryptic-game-server:experimental
+    image: crypticcp/cryptic-game-server:experimental
     restart: always
     depends_on:
       - db
@@ -41,7 +41,7 @@ services:
       - backend
   ms_device:
     container_name: cryptic_device_debug
-    image: useto/cryptic-device:experimental
+    image: crypticcp/cryptic-device:experimental
     restart: always
     depends_on:
       - server
@@ -60,7 +60,7 @@ services:
       - backend
   ms_currency:
     container_name: cryptic_currency_debug
-    image: useto/cryptic-currency:experimental
+    image: crypticcp/cryptic-currency:experimental
     restart: always
     depends_on:
       - server
@@ -79,7 +79,7 @@ services:
       - backend
   ms_service:
     container_name: cryptic_service_debug
-    image: useto/cryptic-service:experimental
+    image: crypticcp/cryptic-service:experimental
     restart: always
     depends_on:
       - server
@@ -98,7 +98,7 @@ services:
       - backend
   ms_inventory:
     container_name: cryptic_inventory_debug
-    image: useto/cryptic-inventory:experimental
+    image: crypticcp/cryptic-inventory:experimental
     restart: always
     depends_on:
       - server
@@ -117,7 +117,7 @@ services:
       - backend
   ms_network:
     container_name: cryptic_network_debug
-    image: useto/cryptic-network:experimental
+    image: crypticcp/cryptic-network:experimental
     restart: always
     depends_on:
       - server

@@ -13,7 +13,7 @@ services:
       - backend
   server:
     container_name: cryptic_server
-    image: useto/cryptic-game-server
+    image: crypticcp/cryptic-game-server
     restart: always
     depends_on:
       - db
@@ -38,7 +38,7 @@ services:
       - backend
   ms_device:
     container_name: cryptic_device
-    image: useto/cryptic-device
+    image: crypticcp/cryptic-device
     restart: always
     depends_on:
       - server
@@ -57,7 +57,7 @@ services:
       - backend
   ms_currency:
     container_name: cryptic_currency
-    image: useto/cryptic-currency
+    image: crypticcp/cryptic-currency
     restart: always
     depends_on:
       - server
@@ -76,7 +76,7 @@ services:
       - backend
   ms_service:
     container_name: cryptic_service
-    image: useto/cryptic-service
+    image: crypticcp/cryptic-service
     restart: always
     depends_on:
       - server
@@ -95,7 +95,7 @@ services:
       - backend
   ms_inventory:
     container_name: cryptic_inventory
-    image: useto/cryptic-inventory
+    image: crypticcp/cryptic-inventory
     restart: always
     depends_on:
       - server
@@ -114,7 +114,7 @@ services:
       - backend
   ms_network:
     container_name: cryptic_network
-    image: useto/cryptic-network
+    image: crypticcp/cryptic-network
     restart: always
     depends_on:
       - server
