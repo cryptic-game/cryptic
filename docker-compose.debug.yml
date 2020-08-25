@@ -56,8 +56,8 @@ services:
       WEBSOCKET_PORT: 80
       HTTP_PORT: 8080
       AUTH_ENABLED: 'true'
-      PRODUCTIVE: 'true'
-      LOG_LEVEL: 'WARN'
+      PRODUCTIVE: 'false'
+      LOG_LEVEL: 'INFO'
       SENTRY_DSN: ''
     networks:
       - cryptic
@@ -95,7 +95,7 @@ services:
     << : *microservice
     environment:
       << : *ms-env
-      LOG_LEVEL: 'WARN'
+      LOG_LEVEL: 'INFO'
       SENTRY_DSN: ''
 
 networks:
