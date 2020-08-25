@@ -1,136 +1,103 @@
 version: '3.7'
+
+x-db: &db
+  MYSQL_HOSTNAME: 'db'
+  MYSQL_PORT: 3306
+  MYSQL_USERNAME: &db_user 'cryptic'
+  MYSQL_PASSWORD: &db_pass 'cryptic'
+  MYSQL_DATABASE: &db_name 'cryptic'
+  SQL_SERVER_LOCATION: '//db:3306'
+  SQL_SERVER_USERNAME: *db_user
+  SQL_SERVER_PASSWORD: *db_pass
+  SQL_SERVER_DATABASE: *db_name
+
+x-ms-env: &ms-env
+  << : *db
+  SERVER_HOST: &server_host 'server'
+  SERVER_PORT: &server_port 1239
+  MSSOCKET_HOST: *server_host  # for java microservices
+  MSSOCKET_PORT: *server_port
+
+x-microservice: &microservice
+  restart: always
+  depends_on:
+    - server
+  environment:
+    << : *ms-env
+  networks:
+    - cryptic
+    - db
+
 services:
   db:
-    container_name: cryptic_mysql_debug
-    image: mysql:5.7
+    image: mariadb
     restart: always
     environment:
-      MYSQL_USER: cryptic
-      MYSQL_PASSWORD: cryptic
-      MYSQL_DATABASE: cryptic
+      MYSQL_USER: *db_user
+      MYSQL_PASSWORD: *db_pass
+      MYSQL_DATABASE: *db_name
       MYSQL_RANDOM_ROOT_PASSWORD: 1
+      MYSQL_INITDB_SKIP_TZINFO: 1
     ports:
-      - "3306:3306"
+      - '3306:3306'
     networks:
-      - backend
+      - db
   server:
-    container_name: cryptic_server_debug
+    container_name: cryptic-server
     image: crypticcp/cryptic-game-server:experimental
     restart: always
     depends_on:
       - db
     environment:
+      << : *db
       MSSOCKET_HOST: '0.0.0.0'
-      MSSOCKET_PORT: 1239
+      MSSOCKET_PORT: *server_port
       WEBSOCKET_HOST: '0.0.0.0'
       WEBSOCKET_PORT: 80
       HTTP_PORT: 8080
       AUTH_ENABLED: 'true'
-      MYSQL_HOSTNAME: 'db'
-      MYSQL_USERNAME: 'cryptic'
-      MYSQL_PASSWORD: 'cryptic'
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: 'cryptic'
-      PRODUCTIVE: 'true'
+      PRODUCTIVE: 'false'
+      LOG_LEVEL: 'INFO'
+      SENTRY_DSN: ''
+    networks:
+      - cryptic
+      - db
     ports:
-      - "8080:8080"
-      - "80:80"
-      - "1239:1239"
-    networks:
-      - frontend
-      - backend
+      - '8080:8080'
+      - '80:80'
+      - '1239:1239'
   ms_device:
-    container_name: cryptic_device_debug
     image: crypticcp/cryptic-device:experimental
-    restart: always
-    depends_on:
-      - server
+    << : *microservice
     environment:
-      SERVER_HOST: 'server'
-      SERVER_PORT: 1239
-      MYSQL_HOSTNAME: 'db'
-      MYSQL_USERNAME: 'cryptic'
-      MYSQL_PASSWORD: 'cryptic'
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: 'cryptic'
-      DSN:
-      RELEASE:
-      PATH_LOGFILE:
-    networks:
-      - backend
+      << : *ms-env
+      DSN: ''
   ms_currency:
-    container_name: cryptic_currency_debug
     image: crypticcp/cryptic-currency:experimental
-    restart: always
-    depends_on:
-      - server
+    << : *microservice
     environment:
-      SERVER_HOST: 'server'
-      SERVER_PORT: 1239
-      MYSQL_HOSTNAME: 'db'
-      MYSQL_USERNAME: 'cryptic'
-      MYSQL_PASSWORD: 'cryptic'
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: 'cryptic'
-      DSN:
-      RELEASE:
-      PATH_LOGFILE:
-    networks:
-      - backend
+      << : *ms-env
+      DSN: ''
   ms_service:
-    container_name: cryptic_service_debug
     image: crypticcp/cryptic-service:experimental
-    restart: always
-    depends_on:
-      - server
+    << : *microservice
     environment:
-      SERVER_HOST: 'server'
-      SERVER_PORT: 1239
-      MYSQL_HOSTNAME: 'db'
-      MYSQL_USERNAME: 'cryptic'
-      MYSQL_PASSWORD: 'cryptic'
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: 'cryptic'
-      DSN:
-      RELEASE:
-      PATH_LOGFILE:
-    networks:
-      - backend
+      << : *ms-env
+      DSN: ''
   ms_inventory:
-    container_name: cryptic_inventory_debug
     image: crypticcp/cryptic-inventory:experimental
-    restart: always
-    depends_on:
-      - server
+    << : *microservice
     environment:
-      SERVER_HOST: 'server'
-      SERVER_PORT: 1239
-      MYSQL_HOSTNAME: 'db'
-      MYSQL_USERNAME: 'cryptic'
-      MYSQL_PASSWORD: 'cryptic'
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: 'cryptic'
-      DSN:
-      RELEASE:
-      PATH_LOGFILE:
-    networks:
-      - backend
+      << : *ms-env
+      DSN: ''
   ms_network:
-    container_name: cryptic_network_debug
     image: crypticcp/cryptic-network:experimental
-    restart: always
-    depends_on:
-      - server
+    << : *microservice
     environment:
-      MSSOCKET_HOST: 'server'
-      MSSOCKET_PORT: 1239
-      MYSQL_HOSTNAME: 'db'
-      MYSQL_USERNAME: 'cryptic'
-      MYSQL_PASSWORD: 'cryptic'
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: 'cryptic'
-    networks:
-      - backend
+      << : *ms-env
+      LOG_LEVEL: 'INFO'
+      SENTRY_DSN: ''
+
 networks:
-  frontend:
-  backend:
+  cryptic:
+  db:
