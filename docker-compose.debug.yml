@@ -44,7 +44,7 @@ services:
       - db
   server:
     container_name: cryptic-server
-    image: crypticcp/cryptic-game-server:experimental
+    image: crypticcp/cryptic-game-server:latest
     restart: always
     depends_on:
       - db
@@ -91,7 +91,7 @@ services:
       << : *ms-env
       DSN: ''
   ms_network:
-    image: crypticcp/cryptic-network:experimental
+    image: crypticcp/cryptic-network:latest
     << : *microservice
     environment:
       << : *ms-env
