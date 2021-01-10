@@ -30,7 +30,6 @@ x-microservice: &microservice
 
 services:
   server:
-    container_name: cryptic-server
     image: crypticcp/cryptic-game-server
     restart: always
     environment:
@@ -49,30 +48,35 @@ services:
       - cryptic
       - db
       - nginx
+
   ms_device:
     image: crypticcp/cryptic-device
     << : *microservice
     environment:
       << : *ms-env
       DSN: "${SENTRY_DSN_DEVICE}"
+
   ms_currency:
     image: crypticcp/cryptic-currency
     << : *microservice
     environment:
       << : *ms-env
       DSN: "${SENTRY_DSN_CURRENCY}"
+
   ms_service:
     image: crypticcp/cryptic-service
     << : *microservice
     environment:
       << : *ms-env
       DSN: "${SENTRY_DSN_SERVICE}"
+
   ms_inventory:
     image: crypticcp/cryptic-inventory
     << : *microservice
     environment:
       << : *ms-env
       DSN: "${SENTRY_DSN_INVENTORY}"
+
   ms_network:
     image: crypticcp/cryptic-network
     << : *microservice
@@ -80,9 +84,9 @@ services:
       << : *ms-env
       LOG_LEVEL: "${LOG_LEVEL}"
       SENTRY_DSN: "${SENTRY_DSN_NETWORK}"
+
   frontend:
     image: crypticcp/frontend:experimental
-    container_name: cryptic-frontend
     restart: always
     environment:
       VIRTUAL_HOST: "${VIRTUAL_HOST_FRONTEND}"
