@@ -1,133 +1,98 @@
 version: '3.7'
+
+x-db: &db
+  MYSQL_HOSTNAME: "${MYSQL_HOSTNAME}"
+  MYSQL_PORT: "${MYSQL_PORT}"
+  MYSQL_USERNAME: &db_user "${MYSQL_USERNAME}"
+  MYSQL_PASSWORD: &db_pass "${MYSQL_PASSWORD}"
+  MYSQL_DATABASE: &db_name "${MYSQL_DATABASE}"
+  SQL_SERVER_LOCATION: "//${MYSQL_HOSTNAME}:${MYSQL_PORT}"
+  SQL_SERVER_USERNAME: *db_user
+  SQL_SERVER_PASSWORD: *db_pass
+  SQL_SERVER_DATABASE: *db_name
+
+x-ms-env: &ms-env
+  << : *db
+  SERVER_HOST: &server_host "${SERVER_HOST}"
+  SERVER_PORT: &server_port "${SERVER_PORT}"
+  MSSOCKET_HOST: *server_host  # for java microservices
+  MSSOCKET_PORT: *server_port
+
+x-microservice: &microservice
+  restart: always
+  depends_on:
+    - server
+  environment:
+    << : *ms-env
+  networks:
+    - cryptic
+    - db
+
 services:
-  db:
-    container_name: cryptic_mysql
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_USER: cryptic
-      MYSQL_PASSWORD: cryptic
-      MYSQL_DATABASE: cryptic
-      MYSQL_RANDOM_ROOT_PASSWORD: 1
-    networks:
-      - backend
   server:
-    container_name: cryptic_server
+    container_name: cryptic-server
     image: crypticcp/cryptic-game-server
     restart: always
-    depends_on:
+    environment:
+      << : *db
+      MSSOCKET_HOST: "${MSSOCKET_HOST}"
+      MSSOCKET_PORT: *server_port
+      WEBSOCKET_HOST: "${WEBSOCKET_HOST}"
+      WEBSOCKET_PORT: "${WEBSOCKET_PORT}"
+      HTTP_PORT: "${HTTP_PORT}"
+      AUTH_ENABLED: "${AUTH_ENABLED}"
+      PRODUCTIVE: "${PRODUCTIVE}"
+      LOG_LEVEL: "${LOG_LEVEL}"
+      SENTRY_DSN: "${SENTRY_DSN_SERVER}"
+      VIRTUAL_HOST: "${VIRTUAL_HOST_SERVER}"
+    networks:
+      - cryptic
       - db
-    environment:
-      MSSOCKET_HOST: '0.0.0.0'
-      MSSOCKET_PORT: 1239
-      WEBSOCKET_HOST: '0.0.0.0'
-      WEBSOCKET_PORT: 80
-      HTTP_PORT: 8080
-      AUTH_ENABLED: 'true'
-      MYSQL_HOSTNAME: 'db'
-      MYSQL_USERNAME: 'cryptic'
-      MYSQL_PASSWORD: 'cryptic'
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: 'cryptic'
-      PRODUCTIVE: 'true'
-    ports:
-      - "8080:8080"
-      - "80:80"
-    networks:
-      - frontend
-      - backend
+      - nginx
   ms_device:
-    container_name: cryptic_device
     image: crypticcp/cryptic-device
-    restart: always
-    depends_on:
-      - server
+    << : *microservice
     environment:
-      SERVER_HOST: 'server'
-      SERVER_PORT: 1239
-      MYSQL_HOSTNAME: 'db'
-      MYSQL_USERNAME: 'cryptic'
-      MYSQL_PASSWORD: 'cryptic'
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: 'cryptic'
-      DSN:
-      RELEASE:
-      PATH_LOGFILE:
-    networks:
-      - backend
+      << : *ms-env
+      DSN: "${SENTRY_DSN_DEVICE}"
   ms_currency:
-    container_name: cryptic_currency
     image: crypticcp/cryptic-currency
-    restart: always
-    depends_on:
-      - server
+    << : *microservice
     environment:
-      SERVER_HOST: 'server'
-      SERVER_PORT: 1239
-      MYSQL_HOSTNAME: 'db'
-      MYSQL_USERNAME: 'cryptic'
-      MYSQL_PASSWORD: 'cryptic'
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: 'cryptic'
-      DSN:
-      RELEASE:
-      PATH_LOGFILE:
-    networks:
-      - backend
+      << : *ms-env
+      DSN: "${SENTRY_DSN_CURRENCY}"
   ms_service:
-    container_name: cryptic_service
     image: crypticcp/cryptic-service
-    restart: always
-    depends_on:
-      - server
+    << : *microservice
     environment:
-      SERVER_HOST: 'server'
-      SERVER_PORT: 1239
-      MYSQL_HOSTNAME: 'db'
-      MYSQL_USERNAME: 'cryptic'
-      MYSQL_PASSWORD: 'cryptic'
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: 'cryptic'
-      DSN:
-      RELEASE:
-      PATH_LOGFILE:
-    networks:
-      - backend
+      << : *ms-env
+      DSN: "${SENTRY_DSN_SERVICE}"
   ms_inventory:
-    container_name: cryptic_inventory
     image: crypticcp/cryptic-inventory
-    restart: always
-    depends_on:
-      - server
+    << : *microservice
     environment:
-      SERVER_HOST: 'server'
-      SERVER_PORT: 1239
-      MYSQL_HOSTNAME: 'db'
-      MYSQL_USERNAME: 'cryptic'
-      MYSQL_PASSWORD: 'cryptic'
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: 'cryptic'
-      DSN:
-      RELEASE:
-      PATH_LOGFILE:
-    networks:
-      - backend
+      << : *ms-env
+      DSN: "${SENTRY_DSN_INVENTORY}"
   ms_network:
-    container_name: cryptic_network
     image: crypticcp/cryptic-network
-    restart: always
-    depends_on:
-      - server
+    << : *microservice
     environment:
-      MSSOCKET_HOST: 'server'
-      MSSOCKET_PORT: 1239
-      MYSQL_HOSTNAME: 'db'
-      MYSQL_USERNAME: 'cryptic'
-      MYSQL_PASSWORD: 'cryptic'
-      MYSQL_PORT: 3306
-      MYSQL_DATABASE: 'cryptic'
-    networks:
-      - backend
-networks:
+      << : *ms-env
+      LOG_LEVEL: "${LOG_LEVEL}"
+      SENTRY_DSN: "${SENTRY_DSN_NETWORK}"
   frontend:
-  backend:
+    image: crypticcp/frontend:experimental
+    container_name: cryptic-frontend
+    restart: always
+    environment:
+      VIRTUAL_HOST: "${VIRTUAL_HOST_FRONTEND}"
+    networks:
+      - nginx
+
+networks:
+  cryptic:
+  db:
+    external:
+      name: mariadb
+  nginx:
+    external: true
