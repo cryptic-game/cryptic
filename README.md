@@ -50,6 +50,6 @@ You can become apart of it by contributing to cryptic.
 
 ## Visit us!
 Website: https://cryptic-game.net/  
-Discord: https://discord.gg/tN5Wcab
+Discord: https://discord.gg/tN5Wcab  
 YouTube: https://www.youtube.com/channel/UCD1cNWfpafkrCxQqWezpZjQ  
 Mail: faq@cryptic-game.net  
