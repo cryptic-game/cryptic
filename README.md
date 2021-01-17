@@ -27,7 +27,7 @@ If you want you can develop your own bot or actually a client.
 
 ### 2. Choose a server
 
-The main server is hosted on https://api.cryptic-game.net/, but you can [host your own](https://github.com/cryptic-game/server) for family and friends.
+The main server is hosted on wss://ws.cryptic-game.net/, but you can [host your own](https://github.com/cryptic-game/server) for family and friends.
 
 ### 3. Have FUN!
 
@@ -50,6 +50,6 @@ You can become apart of it by contributing to cryptic.
 
 ## Visit us!
 Website: https://cryptic-game.net/  
-Discord: https://discord.me/cryptic-game  
+Discord: https://discord.gg/tN5Wcab
 YouTube: https://www.youtube.com/channel/UCD1cNWfpafkrCxQqWezpZjQ  
 Mail: faq@cryptic-game.net  
