@@ -1609,7 +1609,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT 0 as time, count(*)\nFROM device_device\nWHERE uuid IN (SELECT device_file.device\nFROM device_file\nWHERE powered_on = TRUE and content IN (SELECT CONCAT(currency_wallet.source_uuid, ' ', currency_wallet.key) FROM currency_wallet))",
+          "rawSql": "SELECT 0 as time, count(*)\nFROM currency_wallet\nWHERE source_uuid IN (SELECT SUBSTRING(device_file.content, 1, 36)\n                      FROM device_file\n                      WHERE device_file.device IN (SELECT device_device.uuid\n                                                   FROM device_device\n                                                   WHERE device_device.powered_on = true))",
           "refId": "A",
           "select": [
             [
@@ -2307,5 +2307,5 @@
   "timezone": "",
   "title": "v2 Statistics (productive)",
   "uid": "DwyxT1EMz",
-  "version": 100
+  "version": 103
 }
