@@ -1,0 +1,2011 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Statistics of the deployed v2 instance",
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 3,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 41,
+      "panels": [
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 0,
+            "y": 1
+          },
+          "id": 4,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  created AS \"time\",\n  count(*) AS \"count\"\nFROM user",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "id"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "currency_transaction",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Total Users",
+          "type": "stat"
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "dateTimeAsLocal"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 5,
+            "x": 3,
+            "y": 1
+          },
+          "id": 18,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  created AS \"time\",\n  UNIX_TIMESTAMP(created) * 1000\nFROM user\nORDER BY created ASC\nLIMIT 1",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "id"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "user",
+              "timeColumn": "created",
+              "timeColumnType": "datetime",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "First Account (last DB Reset)",
+          "type": "stat"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 10,
+            "w": 16,
+            "x": 8,
+            "y": 1
+          },
+          "hiddenSeries": false,
+          "id": 2,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.3.7",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  created AS \"time\",\n  count(*) AS \"count\"\nFROM user\nWHERE\n  $__timeFilter(created)\nGROUP BY day(created)\nORDER BY created",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "column"
+                  },
+                  {
+                    "params": [
+                      "avg"
+                    ],
+                    "type": "aggregate"
+                  },
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "table": "user",
+              "timeColumn": "created",
+              "timeColumnType": "datetime",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "New Users",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 0,
+            "y": 6
+          },
+          "id": 10,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  created AS \"time\",\n  count(*) AS \"count\"\nFROM user\nWHERE\n  $__timeFilter(created)",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "id"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "currency_transaction",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "New Users",
+          "type": "stat"
+        }
+      ],
+      "title": "User",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 39,
+      "panels": [
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "currency:MC "
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 0,
+            "y": 12
+          },
+          "id": 13,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  time_stamp AS \"time\",\n  sum(amount) / 1000\nFROM currency_wallet",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "id"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "currency_transaction",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Total Morphcoins",
+          "type": "stat"
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "currency:MC "
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 3,
+            "y": 12
+          },
+          "id": 21,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  time_stamp AS \"time\",\n  sum(send_amount)/ 1000\nFROM currency_transaction",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "id"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "currency_transaction",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Total Send Morphcoins",
+          "type": "stat"
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 6,
+            "y": 12
+          },
+          "id": 8,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  time_stamp AS \"time\",\n  count(*) AS \"count\"\nFROM currency_transaction",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "id"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "currency_transaction",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Total Transactions",
+          "type": "stat"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 15,
+            "x": 9,
+            "y": 12
+          },
+          "hiddenSeries": false,
+          "id": 6,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.3.7",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [
+                {
+                  "params": [
+                    "$__interval",
+                    "none"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  $__timeGroupAlias(time_stamp,$__interval),\n  count(*)\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)\nGROUP BY day(time_stamp)\nORDER BY $__timeGroup(time_stamp,$__interval)",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "column"
+                  },
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "aggregate"
+                  },
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "table": "currency_transaction",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Transactions",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "currency:MC "
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 0,
+            "y": 17
+          },
+          "id": 15,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  time_stamp AS \"time\",\n  (sum(amount + (SELECT sum(currency_transaction.send_amount) FROM currency_transaction WHERE currency_transaction.source_uuid = currency_wallet.source_uuid) - (SELECT sum(send_amount) FROM currency_transaction WHERE currency_transaction.destination_uuid = currency_wallet.source_uuid))) / 1000\nFROM\n  currency_wallet",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "id"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "currency_transaction",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Total Mined Morphcoins",
+          "type": "stat"
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "currency:MC "
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 3,
+            "y": 17
+          },
+          "id": 14,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  time_stamp AS \"time\",\n  sum(send_amount)/ 1000\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "id"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "currency_transaction",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Send Morphcoins",
+          "type": "stat"
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 6,
+            "y": 17
+          },
+          "id": 11,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  time_stamp AS \"time\",\n  count(*) AS \"count\"\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "id"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "currency_transaction",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Transactions",
+          "type": "stat"
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "unit": "currency:MC "
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 15,
+            "x": 9,
+            "y": 19
+          },
+          "hiddenSeries": false,
+          "id": 16,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.3.7",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [
+                {
+                  "params": [
+                    "$__interval",
+                    "none"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  time_stamp AS \"time\",\n  sum(send_amount)/ 1000\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)\nGROUP BY day(time_stamp)",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "column"
+                  },
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "aggregate"
+                  },
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "table": "currency_transaction",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Send Morphcoins",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "currency:MC ",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "currency:MC "
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 0,
+            "y": 22
+          },
+          "id": 29,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT 0 as time, sum(amount) / 1000\nFROM currency_wallet\nWHERE source_uuid IN (SELECT SUBSTRING(device_file.content, 1, 36)\n                      FROM device_file\n                      WHERE device_file.device IN (SELECT device_device.uuid\n                                                   FROM device_device\n                                                   WHERE device_device.powered_on = true))",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "id"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "currency_transaction",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Stealable Morphcoins",
+          "type": "stat"
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 3,
+            "y": 22
+          },
+          "id": 31,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [
+                {
+                  "params": [
+                    "$__interval",
+                    "none"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  0 as \"time\",\n  count(*) AS \"count\"\nFROM currency_wallet",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "column"
+                  },
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "aggregate"
+                  },
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "table": "device_device",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "",
+                  "params": [
+                    "powered_on",
+                    "=",
+                    "true"
+                  ],
+                  "type": "expression"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Total Wallets",
+          "type": "stat"
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 6,
+            "y": 22
+          },
+          "id": 28,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT 0 as time, count(*)\nFROM device_device\nWHERE uuid IN (SELECT device_file.device\nFROM device_file\nWHERE powered_on = TRUE and content IN (SELECT CONCAT(currency_wallet.source_uuid, ' ', currency_wallet.key) FROM currency_wallet))",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "id"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "currency_transaction",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Hackable Wallets",
+          "type": "stat"
+        }
+      ],
+      "title": "Morphcoin",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 43,
+      "panels": [
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 0,
+            "y": 28
+          },
+          "id": 22,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  0 AS \"time\",\n  count(*)\nFROM service_miner",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "power"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "service_miner",
+              "timeColumn": "power",
+              "timeColumnType": "float",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Total Miners",
+          "type": "stat"
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 3,
+            "y": 28
+          },
+          "id": 23,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [
+                {
+                  "params": [
+                    "$__interval",
+                    "none"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  0 as \"time\",\n  count(*) AS \"count\"\nFROM service_miner\nWHERE\n  power = 0",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "column"
+                  },
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "aggregate"
+                  },
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "table": "device_device",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "",
+                  "params": [
+                    "powered_on",
+                    "=",
+                    "true"
+                  ],
+                  "type": "expression"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Stopped Miners",
+          "type": "stat"
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 6,
+            "y": 28
+          },
+          "id": 24,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [
+                {
+                  "params": [
+                    "$__interval",
+                    "none"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  0 as \"time\",\n  count(*) AS \"count\"\nFROM service_miner\nWHERE\n  power <> 0",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "column"
+                  },
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "aggregate"
+                  },
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "table": "device_device",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "",
+                  "params": [
+                    "powered_on",
+                    "=",
+                    "true"
+                  ],
+                  "type": "expression"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Started Miners",
+          "type": "stat"
+        }
+      ],
+      "title": "Miner",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 3
+      },
+      "id": 37,
+      "panels": [
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 0,
+            "y": 29
+          },
+          "id": 30,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [
+                {
+                  "params": [
+                    "$__interval",
+                    "none"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  0 as \"time\",\n  count(*) AS \"count\"\nFROM device_device",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "column"
+                  },
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "aggregate"
+                  },
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "table": "device_device",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "",
+                  "params": [
+                    "powered_on",
+                    "=",
+                    "true"
+                  ],
+                  "type": "expression"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Total devices",
+          "type": "stat"
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {},
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 3,
+            "y": 29
+          },
+          "id": 20,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [
+                {
+                  "params": [
+                    "$__interval",
+                    "none"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT\n  0 as \"time\",\n  count(*) AS \"count\"\nFROM device_device\nWHERE\n  powered_on = TRUE",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "column"
+                  },
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "aggregate"
+                  },
+                  {
+                    "params": [
+                      "*"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "table": "device_device",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "",
+                  "params": [
+                    "powered_on",
+                    "=",
+                    "true"
+                  ],
+                  "type": "expression"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Online devices",
+          "type": "stat"
+        },
+        {
+          "datasource": "MySQL (productive)",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 3,
+            "x": 6,
+            "y": 29
+          },
+          "id": 26,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.3.7",
+          "targets": [
+            {
+              "format": "time_series",
+              "group": [],
+              "metricColumn": "none",
+              "rawQuery": true,
+              "rawSql": "SELECT 0 as time, count(*) FROM device_file",
+              "refId": "A",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "id"
+                    ],
+                    "type": "column"
+                  }
+                ]
+              ],
+              "table": "currency_transaction",
+              "timeColumn": "time_stamp",
+              "timeColumnType": "timestamp",
+              "where": [
+                {
+                  "name": "$__timeFilter",
+                  "params": [],
+                  "type": "macro"
+                }
+              ]
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Total files",
+          "type": "stat"
+        }
+      ],
+      "title": "Device",
+      "type": "row"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-7d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "v2 Statistics (productive)",
+  "uid": "DwyxT1EMz",
+  "version": 81
+}
