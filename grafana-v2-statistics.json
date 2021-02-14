@@ -454,7 +454,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  created AS \"time\",\n  count(*) AS \"count\"\nFROM user\nWHERE\n  $__timeFilter(created)\nGROUP BY day(created)\nORDER BY created",
+          "rawSql": "SELECT\n  created AS \"time\",\n  count(*) AS \"Users\"\nFROM user\nWHERE\n  $__timeFilter(created)\nGROUP BY day(created)\nORDER BY created",
           "refId": "A",
           "select": [
             [
@@ -790,7 +790,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(time_stamp,$__interval),\n  count(*)\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)\nGROUP BY day(time_stamp)\nORDER BY time_stamp",
+          "rawSql": "SELECT\n  $__timeGroupAlias(time_stamp,$__interval),\n  count(*) as \"Transactions\"\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)\nGROUP BY day(time_stamp)\nORDER BY time_stamp",
           "refId": "A",
           "select": [
             [
@@ -1037,7 +1037,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  time_stamp AS \"time\",\n  sum(send_amount)/ 1000\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)\nGROUP BY day(time_stamp)\nORDER BY time_stamp",
+          "rawSql": "SELECT\n  time_stamp AS \"time\",\n  sum(send_amount)/ 1000 as \"Morphcoins\"\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)\nGROUP BY day(time_stamp)\nORDER BY time_stamp",
           "refId": "A",
           "select": [
             [
@@ -1824,7 +1824,7 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 24,
         "x": 0,
         "y": 59
       },
@@ -1855,5 +1855,5 @@
   "timezone": "",
   "title": "v2 Statistics (productive)",
   "uid": "DwyxT1EMz",
-  "version": 173
+  "version": 177
 }
