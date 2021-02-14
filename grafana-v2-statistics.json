@@ -709,7 +709,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(time_stamp,$__interval),\n  count(*)\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)\nGROUP BY day(time_stamp)\nORDER BY $__timeGroup(time_stamp,$__interval)",
+          "rawSql": "SELECT\n  $__timeGroupAlias(time_stamp,$__interval),\n  count(*)\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)\nGROUP BY day(time_stamp)\nORDER BY time_stamp",
           "refId": "A",
           "select": [
             [
@@ -1080,7 +1080,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  time_stamp AS \"time\",\n  sum(send_amount)/ 1000\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)\nGROUP BY day(time_stamp)",
+          "rawSql": "SELECT\n  time_stamp AS \"time\",\n  sum(send_amount)/ 1000\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)\nGROUP BY day(time_stamp)\nORDER BY time_stamp",
           "refId": "A",
           "select": [
             [
@@ -2300,12 +2300,12 @@
     "list": []
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-31d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "v2 Statistics (productive)",
   "uid": "DwyxT1EMz",
-  "version": 97
+  "version": 100
 }
