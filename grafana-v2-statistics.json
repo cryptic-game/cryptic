@@ -20,13 +20,215 @@
   "links": [],
   "panels": [
     {
-      "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 0
+      },
+      "id": 52,
+      "title": "Summary",
+      "type": "row"
+    },
+    {
+      "datasource": "MySQL (productive)",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Amount of Morphcoin"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "currency:MC "
+              },
+              {
+                "id": "custom.width",
+                "value": 183
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Joined"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dateTimeAsLocal"
+              },
+              {
+                "id": "custom.width",
+                "value": 172
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Device count"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "devices"
+              },
+              {
+                "id": "custom.width",
+                "value": 121
+              },
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Username"
+            },
+            "properties": [
+              {
+                "id": "custom.align",
+                "value": null
+              },
+              {
+                "id": "custom.width",
+                "value": 270
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Morphcoin stealable"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              },
+              {
+                "id": "custom.width",
+                "value": 188
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Global Morphcoin"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "gradient-gauge"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Username"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 19,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 50,
+      "options": {
+        "frameIndex": 0,
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Amount of Morphcoin"
+          }
+        ]
+      },
+      "pluginVersion": "7.3.7",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  (select name from user where uuid = user_uuid) as \"Username\",\n  (select UNIX_TIMESTAMP(created)*1000 from user where uuid = user_uuid) as \"Joined\",\n  (select count(*) from device_device where owner = user_uuid) as \"Device count\",\n  IF((SELECT source_uuid IN (SELECT SUBSTRING(device_file.content, 1, 36) FROM device_file WHERE device_file.device IN\n                                                (SELECT device_device.uuid FROM device_device\n                                                WHERE device_device.powered_on = true and device_device.owner = user_uuid))) = 1, \"Yes\", \"No\") as \"Morphcoin stealable\",\n  amount / 1000 as \"Amount of Morphcoin\",\n  amount / (SELECT  sum(amount) FROM currency_wallet) as \"Global Morphcoin\"\nFROM currency_wallet\nWHERE amount / 1000 >= 1\nORDER BY amount desc",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "currency_transaction",
+          "timeColumn": "time_stamp",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Top Users",
+      "transformations": [],
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 20
       },
       "id": 41,
       "panels": [],
@@ -55,7 +257,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 1
+        "y": 21
       },
       "id": 4,
       "options": {
@@ -122,18 +324,17 @@
                 "value": null
               }
             ]
-          },
-          "unit": "dateTimeAsLocal"
+          }
         },
         "overrides": []
       },
       "gridPos": {
         "h": 5,
-        "w": 5,
+        "w": 3,
         "x": 3,
-        "y": 1
+        "y": 21
       },
-      "id": 18,
+      "id": 10,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -155,7 +356,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  created AS \"time\",\n  UNIX_TIMESTAMP(created) * 1000\nFROM user\nORDER BY created ASC\nLIMIT 1",
+          "rawSql": "SELECT\n  0 AS \"time\",\n  count(*) AS \"count\"\nFROM user\nWHERE\n  $__timeFilter(created)",
           "refId": "A",
           "select": [
             [
@@ -167,9 +368,9 @@
               }
             ]
           ],
-          "table": "user",
-          "timeColumn": "created",
-          "timeColumnType": "datetime",
+          "table": "currency_transaction",
+          "timeColumn": "time_stamp",
+          "timeColumnType": "timestamp",
           "where": [
             {
               "name": "$__timeFilter",
@@ -181,7 +382,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "First Account (last DB Reset)",
+      "title": "New Users",
       "type": "stat"
     },
     {
@@ -216,10 +417,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 10,
-        "w": 16,
-        "x": 8,
-        "y": 1
+        "h": 11,
+        "w": 18,
+        "x": 6,
+        "y": 21
       },
       "hiddenSeries": false,
       "id": 2,
@@ -344,17 +545,18 @@
                 "value": null
               }
             ]
-          }
+          },
+          "unit": "dateTimeAsLocal"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
-        "w": 3,
+        "h": 6,
+        "w": 6,
         "x": 0,
-        "y": 6
+        "y": 26
       },
-      "id": 10,
+      "id": 18,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -376,7 +578,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  0 AS \"time\",\n  count(*) AS \"count\"\nFROM user\nWHERE\n  $__timeFilter(created)",
+          "rawSql": "SELECT\n  created AS \"time\",\n  UNIX_TIMESTAMP(created) * 1000\nFROM user\nORDER BY created ASC\nLIMIT 1",
           "refId": "A",
           "select": [
             [
@@ -388,9 +590,9 @@
               }
             ]
           ],
-          "table": "currency_transaction",
-          "timeColumn": "time_stamp",
-          "timeColumnType": "timestamp",
+          "table": "user",
+          "timeColumn": "created",
+          "timeColumnType": "datetime",
           "where": [
             {
               "name": "$__timeFilter",
@@ -402,7 +604,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "New Users",
+      "title": "First Account (last DB Reset)",
       "type": "stat"
     },
     {
@@ -412,7 +614,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 32
       },
       "id": 39,
       "panels": [],
@@ -442,7 +644,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 12
+        "y": 33
       },
       "id": 13,
       "options": {
@@ -518,7 +720,7 @@
         "h": 5,
         "w": 3,
         "x": 3,
-        "y": 12
+        "y": 33
       },
       "id": 21,
       "options": {
@@ -596,7 +798,7 @@
         "h": 5,
         "w": 3,
         "x": 6,
-        "y": 12
+        "y": 33
       },
       "id": 8,
       "options": {
@@ -667,7 +869,7 @@
         "h": 7,
         "w": 15,
         "x": 9,
-        "y": 12
+        "y": 33
       },
       "hiddenSeries": false,
       "id": 6,
@@ -812,7 +1014,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 17
+        "y": 38
       },
       "id": 29,
       "options": {
@@ -888,7 +1090,7 @@
         "h": 5,
         "w": 3,
         "x": 3,
-        "y": 17
+        "y": 38
       },
       "id": 14,
       "options": {
@@ -966,7 +1168,7 @@
         "h": 5,
         "w": 3,
         "x": 6,
-        "y": 17
+        "y": 38
       },
       "id": 11,
       "options": {
@@ -1038,7 +1240,7 @@
         "h": 8,
         "w": 15,
         "x": 9,
-        "y": 19
+        "y": 40
       },
       "hiddenSeries": false,
       "id": 16,
@@ -1180,7 +1382,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 22
+        "y": 43
       },
       "id": 44,
       "options": {
@@ -1256,7 +1458,7 @@
         "h": 5,
         "w": 3,
         "x": 3,
-        "y": 22
+        "y": 43
       },
       "id": 45,
       "options": {
@@ -1331,7 +1533,7 @@
         "h": 5,
         "w": 3,
         "x": 6,
-        "y": 22
+        "y": 43
       },
       "id": 31,
       "options": {
@@ -1431,7 +1633,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 27
+        "y": 48
       },
       "id": 46,
       "options": {
@@ -1507,7 +1709,7 @@
         "h": 5,
         "w": 3,
         "x": 3,
-        "y": 27
+        "y": 48
       },
       "id": 47,
       "options": {
@@ -1585,7 +1787,7 @@
         "h": 5,
         "w": 3,
         "x": 6,
-        "y": 27
+        "y": 48
       },
       "id": 28,
       "options": {
@@ -1639,13 +1841,89 @@
       "type": "stat"
     },
     {
+      "datasource": "MySQL (productive)",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "currency:MC "
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 9,
+        "y": 48
+      },
+      "id": 49,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.3.7",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  0 AS \"time\",\n  avg(amount) / 1000\nFROM currency_wallet",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "currency_transaction",
+          "timeColumn": "time_stamp",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "AVG Morphcoins per Wallet",
+      "type": "stat"
+    },
+    {
       "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 32
+        "y": 53
       },
       "id": 43,
       "panels": [],
@@ -1674,7 +1952,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 33
+        "y": 54
       },
       "id": 22,
       "options": {
@@ -1749,7 +2027,7 @@
         "h": 5,
         "w": 3,
         "x": 3,
-        "y": 33
+        "y": 54
       },
       "id": 23,
       "options": {
@@ -1848,7 +2126,7 @@
         "h": 5,
         "w": 3,
         "x": 6,
-        "y": 33
+        "y": 54
       },
       "id": 24,
       "options": {
@@ -1948,7 +2226,7 @@
         "h": 5,
         "w": 3,
         "x": 9,
-        "y": 33
+        "y": 54
       },
       "id": 15,
       "options": {
@@ -2008,7 +2286,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 59
       },
       "id": 37,
       "panels": [],
@@ -2037,7 +2315,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 39
+        "y": 60
       },
       "id": 30,
       "options": {
@@ -2136,7 +2414,106 @@
         "h": 5,
         "w": 3,
         "x": 3,
-        "y": 39
+        "y": 60
+      },
+      "id": 48,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.3.7",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [
+            {
+              "params": [
+                "$__interval",
+                "none"
+              ],
+              "type": "time"
+            }
+          ],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  0 as \"time\",\n  count(*) AS \"count\"\nFROM device_device\nWHERE\n  powered_on = false",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "*"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "aggregate"
+              },
+              {
+                "params": [
+                  "*"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "device_device",
+          "timeColumn": "time_stamp",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "",
+              "params": [
+                "powered_on",
+                "=",
+                "true"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Offline devices",
+      "type": "stat"
+    },
+    {
+      "datasource": "MySQL (productive)",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 6,
+        "y": 60
       },
       "id": 20,
       "options": {
@@ -2237,8 +2614,8 @@
       "gridPos": {
         "h": 5,
         "w": 3,
-        "x": 6,
-        "y": 39
+        "x": 9,
+        "y": 60
       },
       "id": 26,
       "options": {
@@ -2290,6 +2667,46 @@
       "timeShift": null,
       "title": "Total files",
       "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 65
+      },
+      "id": 56,
+      "panels": [],
+      "title": "TODO",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 66
+      },
+      "id": 54,
+      "options": {
+        "content": "<h2>Statistics Table:</h2>\n<table class=\"tg\">\n<thead>\n  <tr>\n    <th class=\"tg-c3ow\">Property</th>\n    <th class=\"tg-c3ow\">Total</th>\n    <th class=\"tg-c3ow\">Since (datetime)</th>\n  </tr>\n</thead>\n<tbody>\n  <tr>\n    <td class=\"tg-0pky\">Users</td>\n    <td class=\"tg-0pky\"></td>\n    <td class=\"tg-0pky\"></td>\n  </tr>\n  <tr>\n    <td class=\"tg-0pky\">Morphcoins</td>\n    <td class=\"tg-0pky\"></td>\n    <td class=\"tg-0pky\"></td>\n  </tr>\n  <tr>\n    <td class=\"tg-0pky\">Transactions (to User)</td>\n    <td class=\"tg-0pky\"></td>\n    <td class=\"tg-0pky\"></td>\n  </tr>\n  <tr>\n    <td class=\"tg-0pky\">Transactions (to Bank)</td>\n    <td class=\"tg-0pky\"></td>\n    <td class=\"tg-0pky\"></td>\n  </tr>\n</tbody>\n</table>",
+        "mode": "html"
+      },
+      "pluginVersion": "7.3.7",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "  ",
+      "type": "text"
     }
   ],
   "refresh": "5s",
@@ -2307,5 +2724,5 @@
   "timezone": "",
   "title": "v2 Statistics (productive)",
   "uid": "DwyxT1EMz",
-  "version": 103
+  "version": 161
 }
