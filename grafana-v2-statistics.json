@@ -76,7 +76,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "SELECT\n  created AS \"time\",\n  count(*) AS \"count\"\nFROM user",
+              "rawSql": "SELECT\n  0 AS \"time\",\n  count(*) AS \"count\"\nFROM user",
               "refId": "A",
               "select": [
                 [
@@ -373,7 +373,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "SELECT\n  created AS \"time\",\n  count(*) AS \"count\"\nFROM user\nWHERE\n  $__timeFilter(created)",
+              "rawSql": "SELECT\n  0 AS \"time\",\n  count(*) AS \"count\"\nFROM user\nWHERE\n  $__timeFilter(created)",
               "refId": "A",
               "select": [
                 [
@@ -440,7 +440,7 @@
             "h": 5,
             "w": 3,
             "x": 0,
-            "y": 12
+            "y": 2
           },
           "id": 13,
           "options": {
@@ -464,7 +464,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "SELECT\n  time_stamp AS \"time\",\n  sum(amount) / 1000\nFROM currency_wallet",
+              "rawSql": "SELECT\n  0 AS \"time\",\n  sum(amount) / 1000\nFROM currency_wallet",
               "refId": "A",
               "select": [
                 [
@@ -516,7 +516,7 @@
             "h": 5,
             "w": 3,
             "x": 3,
-            "y": 12
+            "y": 2
           },
           "id": 21,
           "options": {
@@ -540,7 +540,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "SELECT\n  time_stamp AS \"time\",\n  sum(send_amount)/ 1000\nFROM currency_transaction",
+              "rawSql": "SELECT\n  0 AS \"time\",\n  sum(send_amount)/ 1000\nFROM currency_transaction",
               "refId": "A",
               "select": [
                 [
@@ -594,7 +594,7 @@
             "h": 5,
             "w": 3,
             "x": 6,
-            "y": 12
+            "y": 2
           },
           "id": 8,
           "options": {
@@ -618,7 +618,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "SELECT\n  time_stamp AS \"time\",\n  count(*) AS \"count\"\nFROM currency_transaction",
+              "rawSql": "SELECT\n  0 AS \"time\",\n  count(*) AS \"count\"\nFROM currency_transaction",
               "refId": "A",
               "select": [
                 [
@@ -665,7 +665,7 @@
             "h": 7,
             "w": 15,
             "x": 9,
-            "y": 12
+            "y": 2
           },
           "hiddenSeries": false,
           "id": 6,
@@ -807,7 +807,7 @@
             "h": 5,
             "w": 3,
             "x": 0,
-            "y": 17
+            "y": 7
           },
           "id": 15,
           "options": {
@@ -831,7 +831,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "SELECT\n  time_stamp AS \"time\",\n  (sum(amount + (SELECT sum(currency_transaction.send_amount) FROM currency_transaction WHERE currency_transaction.source_uuid = currency_wallet.source_uuid) - (SELECT sum(send_amount) FROM currency_transaction WHERE currency_transaction.destination_uuid = currency_wallet.source_uuid))) / 1000\nFROM\n  currency_wallet",
+              "rawSql": "SELECT\n  0 AS \"time\",\n  (sum(amount + (SELECT sum(currency_transaction.send_amount) FROM currency_transaction WHERE currency_transaction.source_uuid = currency_wallet.source_uuid) - (SELECT sum(send_amount) FROM currency_transaction WHERE currency_transaction.destination_uuid = currency_wallet.source_uuid))) / 1000\nFROM\n  currency_wallet",
               "refId": "A",
               "select": [
                 [
@@ -883,7 +883,7 @@
             "h": 5,
             "w": 3,
             "x": 3,
-            "y": 17
+            "y": 7
           },
           "id": 14,
           "options": {
@@ -907,7 +907,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "SELECT\n  time_stamp AS \"time\",\n  sum(send_amount)/ 1000\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)",
+              "rawSql": "SELECT\n  0 AS \"time\",\n  sum(send_amount)/ 1000\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)",
               "refId": "A",
               "select": [
                 [
@@ -961,7 +961,7 @@
             "h": 5,
             "w": 3,
             "x": 6,
-            "y": 17
+            "y": 7
           },
           "id": 11,
           "options": {
@@ -985,7 +985,7 @@
               "group": [],
               "metricColumn": "none",
               "rawQuery": true,
-              "rawSql": "SELECT\n  time_stamp AS \"time\",\n  count(*) AS \"count\"\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)",
+              "rawSql": "SELECT\n  0 AS \"time\",\n  count(*) AS \"count\"\nFROM currency_transaction\nWHERE\n  $__timeFilter(time_stamp)",
               "refId": "A",
               "select": [
                 [
@@ -1033,7 +1033,7 @@
             "h": 8,
             "w": 15,
             "x": 9,
-            "y": 19
+            "y": 9
           },
           "hiddenSeries": false,
           "id": 16,
@@ -1178,7 +1178,7 @@
             "h": 5,
             "w": 3,
             "x": 0,
-            "y": 22
+            "y": 12
           },
           "id": 29,
           "options": {
@@ -1253,7 +1253,7 @@
             "h": 5,
             "w": 3,
             "x": 3,
-            "y": 22
+            "y": 12
           },
           "id": 31,
           "options": {
@@ -1355,7 +1355,7 @@
             "h": 5,
             "w": 3,
             "x": 6,
-            "y": 22
+            "y": 12
           },
           "id": 28,
           "options": {
@@ -1445,7 +1445,7 @@
             "h": 5,
             "w": 3,
             "x": 0,
-            "y": 28
+            "y": 3
           },
           "id": 22,
           "options": {
@@ -1520,7 +1520,7 @@
             "h": 5,
             "w": 3,
             "x": 3,
-            "y": 28
+            "y": 3
           },
           "id": 23,
           "options": {
@@ -1619,7 +1619,7 @@
             "h": 5,
             "w": 3,
             "x": 6,
-            "y": 28
+            "y": 3
           },
           "id": 24,
           "options": {
@@ -1733,7 +1733,7 @@
             "h": 5,
             "w": 3,
             "x": 0,
-            "y": 29
+            "y": 4
           },
           "id": 30,
           "options": {
@@ -1832,7 +1832,7 @@
             "h": 5,
             "w": 3,
             "x": 3,
-            "y": 29
+            "y": 4
           },
           "id": 20,
           "options": {
@@ -1934,7 +1934,7 @@
             "h": 5,
             "w": 3,
             "x": 6,
-            "y": 29
+            "y": 4
           },
           "id": 26,
           "options": {
@@ -2007,5 +2007,5 @@
   "timezone": "",
   "title": "v2 Statistics (productive)",
   "uid": "DwyxT1EMz",
-  "version": 81
+  "version": 90
 }
