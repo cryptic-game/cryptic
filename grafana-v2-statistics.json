@@ -1642,10 +1642,6 @@
               {
                 "id": "unit",
                 "value": "currency:MC "
-              },
-              {
-                "id": "custom.width",
-                "value": 183
               }
             ]
           },
@@ -1658,10 +1654,6 @@
               {
                 "id": "unit",
                 "value": "dateTimeAsLocal"
-              },
-              {
-                "id": "custom.width",
-                "value": 172
               }
             ]
           },
@@ -1671,14 +1663,6 @@
               "options": "Device count"
             },
             "properties": [
-              {
-                "id": "unit",
-                "value": "devices"
-              },
-              {
-                "id": "custom.width",
-                "value": 121
-              },
               {
                 "id": "custom.filterable",
                 "value": true
@@ -1694,10 +1678,6 @@
               {
                 "id": "custom.align",
                 "value": null
-              },
-              {
-                "id": "custom.width",
-                "value": 270
               }
             ]
           },
@@ -1710,10 +1690,6 @@
               {
                 "id": "custom.filterable",
                 "value": true
-              },
-              {
-                "id": "custom.width",
-                "value": 188
               }
             ]
           },
@@ -1730,6 +1706,10 @@
               {
                 "id": "custom.displayMode",
                 "value": "gradient-gauge"
+              },
+              {
+                "id": "custom.width",
+                "value": 400
               }
             ]
           },
@@ -1771,7 +1751,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  (select name from user where uuid = user_uuid) as \"Username\",\n  (select UNIX_TIMESTAMP(created)*1000 from user where uuid = user_uuid) as \"Joined\",\n  (select count(*) from device_device where owner = user_uuid) as \"Device count\",\n  IF((SELECT source_uuid IN (SELECT SUBSTRING(device_file.content, 1, 36) FROM device_file WHERE device_file.device IN\n                                                (SELECT device_device.uuid FROM device_device\n                                                WHERE device_device.powered_on = true and device_device.owner = user_uuid))) = 1, \"Yes\", \"No\") as \"Morphcoin stealable\",\n  amount / 1000 as \"Amount of Morphcoin\",\n  amount / (SELECT  sum(amount) FROM currency_wallet) as \"Global Morphcoin\"\nFROM currency_wallet\nWHERE amount / 1000 >= 1\nORDER BY amount desc",
+          "rawSql": "SELECT\n  (select name from user where uuid = user_uuid) as \"Username\",\n  (select UNIX_TIMESTAMP(created)*1000 from user where uuid = user_uuid) as \"Joined\",\n  (select count(*) from device_device where owner = user_uuid) as \"Device count\",\n  IF((SELECT source_uuid IN (SELECT SUBSTRING(device_file.content, 1, 36) FROM device_file WHERE device_file.device IN\n                                                (SELECT device_device.uuid FROM device_device\n                                                WHERE device_device.powered_on = true and device_device.owner = user_uuid))) = 1, \"Yes\", \"No\") as \"Morphcoin stealable\",\n  amount / 1000 as \"Amount of Morphcoin\",\n  amount / (SELECT  sum(amount) FROM currency_wallet) as \"Global Morphcoin\",\n  (select count(*) from currency_transaction where currency_transaction.source_uuid = currency_wallet.source_uuid) as \"Transactions from (total)\",\n  (select count(*) from currency_transaction where currency_transaction.source_uuid = currency_wallet.source_uuid and $__timeFilter(time_stamp)) as \"Transactions from (since)\",\n  (select count(*) from currency_transaction where currency_transaction.destination_uuid = currency_wallet.source_uuid) as \"Transactions to (total)\",\n  (select count(*) from currency_transaction where currency_transaction.destination_uuid = currency_wallet.source_uuid and $__timeFilter(time_stamp)) as \"Transactions to (since)\"\nFROM currency_wallet\nWHERE amount / 1000 >= 1\nORDER BY amount desc",
           "refId": "A",
           "select": [
             [
@@ -1802,7 +1782,7 @@
       "type": "table"
     }
   ],
-  "refresh": "5s",
+  "refresh": "30m",
   "schemaVersion": 26,
   "style": "dark",
   "tags": [],
@@ -1817,5 +1797,5 @@
   "timezone": "",
   "title": "v2 Statistics (productive)",
   "uid": "DwyxT1EMz",
-  "version": 186
+  "version": 200
 }
