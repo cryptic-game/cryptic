@@ -1321,6 +1321,85 @@
       "type": "stat"
     },
     {
+      "datasource": "MySQL (productive)",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "currency:MC "
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 15,
+        "y": 27
+      },
+      "id": 60,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.3.7",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT 0 as time, avg(amount) / 1000\nFROM currency_wallet\nWHERE source_uuid IN (SELECT SUBSTRING(device_file.content, 1, 36)\n                      FROM device_file\n                      WHERE device_file.device IN (SELECT device_device.uuid\n                                                   FROM device_device\n                                                   WHERE device_device.powered_on = true))",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "id"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "currency_transaction",
+          "timeColumn": "time_stamp",
+          "timeColumnType": "timestamp",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "AVG Stealable Morphcoins per Wallet",
+      "type": "stat"
+    },
+    {
       "collapsed": false,
       "datasource": null,
       "gridPos": {
@@ -1751,7 +1830,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "SELECT\n  (select name from user where uuid = user_uuid) as \"Username\",\n  (select UNIX_TIMESTAMP(created)*1000 from user where uuid = user_uuid) as \"Joined\",\n  (select count(*) from device_device where owner = user_uuid) as \"Device count\",\n  IF((SELECT source_uuid IN (SELECT SUBSTRING(device_file.content, 1, 36) FROM device_file WHERE device_file.device IN\n                                                (SELECT device_device.uuid FROM device_device\n                                                WHERE device_device.powered_on = true and device_device.owner = user_uuid))) = 1, \"Yes\", \"No\") as \"Morphcoin stealable\",\n  amount / 1000 as \"Amount of Morphcoin\",\n  amount / (SELECT  sum(amount) FROM currency_wallet) as \"Global Morphcoin\",\n  (select count(*) from currency_transaction where currency_transaction.source_uuid = currency_wallet.source_uuid) as \"Transactions from (total)\",\n  (select count(*) from currency_transaction where currency_transaction.source_uuid = currency_wallet.source_uuid and $__timeFilter(time_stamp)) as \"Transactions from (since)\",\n  (select count(*) from currency_transaction where currency_transaction.destination_uuid = currency_wallet.source_uuid) as \"Transactions to (total)\",\n  (select count(*) from currency_transaction where currency_transaction.destination_uuid = currency_wallet.source_uuid and $__timeFilter(time_stamp)) as \"Transactions to (since)\"\nFROM currency_wallet\nWHERE amount / 1000 >= 1\nORDER BY amount desc",
+          "rawSql": "SELECT\n  (select name from user where uuid = user_uuid) as \"Username\",\n  (select UNIX_TIMESTAMP(created)*1000 from user where uuid = user_uuid) as \"Joined\",\n  (select count(*) from device_device where owner = user_uuid) as \"Device count\",\n  (select count(*) from service_miner where wallet = source_uuid and power = 1) as \"active Miners\",\n  IF((SELECT source_uuid IN (SELECT SUBSTRING(device_file.content, 1, 36) FROM device_file WHERE device_file.device IN\n                                                (SELECT device_device.uuid FROM device_device\n                                                WHERE device_device.powered_on = true and device_device.owner = user_uuid))) = 1, \"Yes\", \"No\") as \"Morphcoin stealable\",\n  amount / 1000 as \"Amount of Morphcoin\",\n  amount / (SELECT  sum(amount) FROM currency_wallet) as \"Global Morphcoin\",\n  (select count(*) from currency_transaction where currency_transaction.source_uuid = currency_wallet.source_uuid) as \"Transactions from (total)\",\n  (select count(*) from currency_transaction where currency_transaction.source_uuid = currency_wallet.source_uuid and $__timeFilter(time_stamp)) as \"Transactions from (since)\",\n  (select count(*) from currency_transaction where currency_transaction.destination_uuid = currency_wallet.source_uuid) as \"Transactions to (total)\",\n  (select count(*) from currency_transaction where currency_transaction.destination_uuid = currency_wallet.source_uuid and $__timeFilter(time_stamp)) as \"Transactions to (since)\"\nFROM currency_wallet\nWHERE amount / 1000 >= 1\nORDER BY amount desc",
           "refId": "A",
           "select": [
             [
@@ -1797,5 +1876,5 @@
   "timezone": "",
   "title": "v2 Statistics (productive)",
   "uid": "DwyxT1EMz",
-  "version": 200
+  "version": 208
 }
