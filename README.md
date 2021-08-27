@@ -21,7 +21,7 @@ Cryptic supports many clients to play.
 The most popular is the client for your browser: [click here](https://play.cryptic-game.net/)
 But you can also play in a virtual terminal: [PyCrypCli](https://github.com/Defelo/PyCrypCli)
 
-More clients are everywhere in the internet, so it's your choice.
+More clients are everywhere on the internet, so it's your choice.
 
 If you want you can develop your own client. (**Bots are not allowed!**)
 
