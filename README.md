@@ -48,6 +48,10 @@ You can become apart of it by contributing to cryptic.
 
 ![project structure](https://raw.githubusercontent.com/cryptic-game/graphics/master/wallpaper/ablauf.png)
 
+## Roadmap
+
+https://wiki.cryptic-game.net/books/planung-cryptic/page/pre-alpha-30---roadmap
+
 ## Visit us!
 Website: https://cryptic-game.net/  
 Discord: https://discord.gg/tN5Wcab  
