@@ -12,6 +12,8 @@ The goal of cryptic is to hack other players and think creative like real hacker
 You must think hard about your actions before attacking another player and learn the basics of the game.
 But all in all it's not so hard to start!
 
+Find instructions in our [wiki](https://wiki.cryptic-game.net/books/spielanleitung) (German). 
+
 ## I want to play!
 
 Nothing easier than that! Three steps to start:
