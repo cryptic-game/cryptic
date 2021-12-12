@@ -19,11 +19,11 @@ Nothing easier than that! Three steps to start:
 
 Cryptic supports many clients to play.
 The most popular is the client for your browser: [click here](https://play.cryptic-game.net/)
-But you can also play in an virtual terminal: [cryptic-term](https://github.com/cryptic-game/cryptic-term)
+But you can also play in a virtual terminal: [PyCrypCli](https://github.com/Defelo/PyCrypCli)
 
-More clients are everywhere in the internet, so it's your choice.
+More clients are everywhere on the internet, so it's your choice.
 
-If you want you can develop your own bot or actually a client.
+If you want you can develop your own client. (**Bots are not allowed!**)
 
 ### 2. Choose a server
 
@@ -51,5 +51,4 @@ You can become apart of it by contributing to cryptic.
 ## Visit us!
 Website: https://cryptic-game.net/  
 Discord: https://discord.gg/tN5Wcab  
-YouTube: https://www.youtube.com/channel/UCD1cNWfpafkrCxQqWezpZjQ  
-Mail: faq@cryptic-game.net  
+YouTube: https://www.youtube.com/channel/UCD1cNWfpafkrCxQqWezpZjQ
