@@ -34,7 +34,7 @@ Refer to our [wiki](https://wiki.cryptic-game.net/books/spielanleitung) (German)
 
 Contribute to Cryptic to become part of our team.
 
-Cryptic is driven by a not profit-oriented team that maintains the game, adds new features and releases new versions.
+Cryptic is driven by a non-profit-oriented team that maintains the game, adds new features, and releases new versions.
 
 Anything from design to development will be helpful, no matter what skills you have. For more information, talk to us on Discord or send us an email.
 
