@@ -28,7 +28,7 @@ The main server is hosted on wss://ws.cryptic-game.net/ (and automatically used 
 
 [Create a Cryptic account to play](https://play.cryptic-game.net/signup) and become the strongest hacker of Cryptic.  
 
-Refer to our [wiki](https://wiki.cryptic-game.net/books/spielanleitung) (German) for instructions or visit our Youtube channel for Let's Play videos.
+Refer to our wiki for [German](https://wiki.cryptic-game.net/books/spielanleitung) or [English](https://wiki.cryptic-game.net/books/game-manual) instructions or visit our Youtube channel for a Let's Play video.
 
 ## Support our team!
 
