@@ -4,45 +4,39 @@
 
 An open-source open-world multiplayer hacking game.
 
-## What is it?!
+## What is it?
 
-Cryptic is an deep strategy game.
-You start with only one virtual computer ingame and a few crypto coins.
-The goal of cryptic is to hack other players and think creative like real hackers.
-You must think hard about your actions before attacking another player and learn the basics of the game.
-But all in all it's not so hard to start!
+Cryptic is a deep strategy game. The goal of this deep strategy game is to hack other players and think creatively like real hackers. You only start with a virtual computer and a few crypto coins. You must think carefully about your actions before attacking another player and learn the basics of the game. But it's not hard to get started.  
 
-## I want to play!
+## How to play the game?
 
-Nothing easier than that! Three steps to start:
+Nothing easier than that. Just three steps to start.
+
 ### 1. Choose a client
 
-Cryptic supports many clients to play.
-The most popular is the client for your browser: [click here](https://play.cryptic-game.net/)
-But you can also play in a virtual terminal: [PyCrypCli](https://github.com/Defelo/PyCrypCli)
+Play the game in [your browser](https://play.cryptic-game.net/).  
 
-More clients are everywhere on the internet, so it's your choice.
+As Cryptic supports many clients to play, you can also play in a virtual terminal, e.g. [PyCrypCli](https://github.com/Defelo/PyCrypCli).  
 
-If you want you can develop your own client. (**Bots are not allowed!**)
+More clients are available on the internet. If you want, you can even develop your own client. (**Bots are not allowed!**)  
 
 ### 2. Choose a server
 
-The main server is hosted on wss://ws.cryptic-game.net/, but you can [host your own](https://github.com/cryptic-game/server) for family and friends.
+The main server is hosted on wss://ws.cryptic-game.net/ (and automatically used when you play in the browser), but you can [host your own](https://github.com/cryptic-game/server) for family and friends.
 
-### 3. Have FUN!
+### 3. Create an account and have fun
 
-At the end you have to create an account. After that you can become the strongest hacker of cryptic.
+[Create a Cryptic account to play](https://play.cryptic-game.net/signup) and become the strongest hacker of Cryptic.  
 
-## I want to help!
+Refer to our wiki for [German](https://wiki.cryptic-game.net/books/spielanleitung) or [English](https://wiki.cryptic-game.net/books/game-manual) instructions or visit our Youtube channel for a Let's Play video.
 
-No matter what skills you have... ALL ARE HELPFUL!
-From design to development. For more information talk to us on discord or write us an email.
+## Support our team!
 
-## Organisation
+Contribute to Cryptic to become part of our team.
 
-Behind cryptic exists a not profit-oriented team.
-That team maintains the game, adds new features and publishes new versions.
-You can become apart of it by contributing to cryptic.
+Cryptic is driven by a non-profit-oriented team that maintains the game, adds new features, and releases new versions.
+
+Anything from design to development will be helpful, no matter what skills you have. For more information, talk to us on Discord or send us an email.
 
 ## Project Structure
 
