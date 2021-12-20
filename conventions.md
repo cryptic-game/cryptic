@@ -39,7 +39,7 @@ Heads (or Head Asistants) can create/approve hotfixes for severe/security-relate
     - As Autoformatter, use [PyCharm](https://www.jetbrains.com/pycharm/) (preferred) or [black](https://github.com/python/black).
     - Max line length: 120 characters. 
     - Remove unnecessary blank lines but keep one blank line at the end of each file.
-    - Use typing except for obvious types (e.g. `foo = "bar"`)
+    - Use typing except for obvious types (e.g. `foo = "bar"`).
 - Angular: Follow the [Angular Coding Style Guide](https://angular.io/guide/styleguide). 
 
 Naming conventions for variables and functions:  
