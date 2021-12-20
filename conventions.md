@@ -1,6 +1,6 @@
 # Cryptic Conventions
 
-Follow these global conventions for [Cryptic](https://github.com/cryptic-game) to ensure a clear and uniform style. 
+Follow these conventions to ensure a clear and uniform style. 
 
 In general, please use English for all Cryptic-related GitHub posts (in issues, pull requests, commits, etc).
 
