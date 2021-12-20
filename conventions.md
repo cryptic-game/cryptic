@@ -45,7 +45,7 @@ Heads (or Head Asistants) can create/approve hotfixes for severe/security-relate
 Naming conventions for variables and functions:  
 
 Follow [grammar based naming conventions](https://dev.to/somedood/a-grammar-based-naming-convention-13jf) with some exceptions: 
-- Name functions using *snake\_case*
+- Name functions using *snake\_case*.
 - Do not use the *is-* prefix for *bool* typed variables. 
 
 Add any exceptions with `# noinspection PyPep8Naming` and a comment. <!-- check and change if required -->If classes are saved as variable, e.g. `self.Session: sessionmaker = sessionmaker(...)`.
