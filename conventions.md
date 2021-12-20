@@ -30,7 +30,7 @@ Some notes for issues and pull requests:
 
 For releases, we follow [Semantic Versioning 2.0.0](https://semver.org/).
 
-Head (Asistants) can create/approve hotfixes for severe/security-related issues to address quick fixes. Such commits should use the naming scheme: `Hotfix: <message>` (z.B. `Hotfix: Changed foo bar`). Create a new branch from a release-tag and name the new release as `<old-release-name>.x` - each hotfix for a release increases x by 1, e.g. `v0.3.1-pre-alpha.2`.
+Heads (or Head Asistants) can create/approve hotfixes for severe/security-related issues to address quick fixes. Such commits should use the naming scheme: `Hotfix: <message>` (z.B. `Hotfix: Changed foo bar`). Create a new branch from a release-tag and name the new release as `<old-release-name>.x` - each hotfix for a release increases x by 1, e.g. `v0.3.1-pre-alpha.2`.
 
 ## Code Style
 
