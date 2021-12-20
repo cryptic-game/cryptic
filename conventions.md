@@ -50,4 +50,4 @@ Follow [grammar based naming conventions](https://dev.to/somedood/a-grammar-base
 
 Add any exceptions with `# noinspection PyPep8Naming` and a comment. <!-- check and change if required -->If classes are saved as variable, e.g. `self.Session: sessionmaker = sessionmaker(...)`.
 
-We recommend WebStorm (free for pupils and students) or Visual Studio Code as development environment. Additionally, use [TSLint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) and [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig). For Webstorm, use [Karma](https://plugins.jetbrains.com/plugin/7287-karma).
+We recommend [WebStorm ](https://www.jetbrains.com/webstorm/) (free for pupils/students) or [Visual Studio Code](https://code.visualstudio.com/) as development environment. Additionally, use [TSLint](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) and [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig). For Webstorm, use [Karma](https://plugins.jetbrains.com/plugin/7287-karma).
