@@ -10,9 +10,11 @@ The master (or main) branch contains the actual version. New commits to are only
 
 ## Commit Messages
 
-Write short (< 50 characters) **commit messages** in English and use the scheme `<message> (#<issue-id>)`. Do not use just `<em>bug fix</em>` but useful text. Hotfixes and merge commits.
+Write short (< 50 characters) **commit messages** in English and use the scheme `<message> (#<issue-id>)`. Do not use just `<em>bug fix</em>` but useful text.
 
 The commit message that fixes any merge conflicts in your feature branch (after you have merged master into your branch) should be `Solved merge conflicts for #<pull-request-id>`.
+
+<!-- special hotfix commit msg? -->
 
 ### Merging Branches
 
