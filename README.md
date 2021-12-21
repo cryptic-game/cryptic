@@ -38,6 +38,8 @@ Cryptic is driven by a non-profit-oriented team that maintains the game, adds ne
 
 Anything from design to development will be helpful, no matter what skills you have. For more information, talk to us on Discord or send us an email.
 
+Note: There are some [Github/coding/naming conventions](conventions.md) specific to the Cryptic project.
+
 ## Project Structure
 
 ![project structure](https://raw.githubusercontent.com/cryptic-game/graphics/master/wallpaper/ablauf.png)
