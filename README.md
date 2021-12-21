@@ -1,4 +1,6 @@
-![cryptic](https://raw.githubusercontent.com/cryptic-game/graphics/master/wallpaper/cry_crack.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/1306575/147002513-dfe9cfea-f711-408d-8cfb-ecb6a53e96a8.png" width="400" />
+</p>
 
 # Cryptic
 
