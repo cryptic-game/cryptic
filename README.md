@@ -6,7 +6,7 @@ An open-source open-world multiplayer hacking game.
 
 ## What is it?
 
-Cryptic is a deep strategy game. The goal of this deep strategy game is to hack other players and think creatively like real hackers. You only start with a virtual computer and a few crypto coins. You must think carefully about your actions before attacking another player and learn the basics of the game. But it's not hard to get started.  
+Cryptic is a deep strategy game. Its goal is to hack other players and think creatively like real hackers. You only start with a virtual computer and a few crypto coins. You must think carefully about your actions before attacking another player and learn the basics of the game. But it's not hard to get started.  
 
 ## How to play the game?
 
