@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/1306575/147002513-dfe9cfea-f711-408d-8cfb-ecb6a53e96a8.png" width="400" />
-</p>
+<img src="https://user-images.githubusercontent.com/1306575/147002513-dfe9cfea-f711-408d-8cfb-ecb6a53e96a8.png" width="400" />
 
 # Cryptic
 
