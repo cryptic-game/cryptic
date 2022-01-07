@@ -1,12 +1,18 @@
 # Cryptic Conventions
 
- Please use English for all Cryptic-related GitHub posts (in issues, pull requests, commits, etc) and follow the conventions below to ensure a clear and uniform style.
+Please follow the conventions below to ensure a clear and uniform style.
+
+## Language
+
+Use **English** for all Cryptic-related GitHub posts (in issues, pull requests, commits, etc).
 
 ## Branch Naming
 
-The master (or main) branch contains the actual version. New commits to are only added via pull requests which requires two approvals. Learn more about [GitHub branches](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches).
+Use pull requests to add new commits to master (main) [branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches) that contains the actual version. Pull requests require two approvals. 
 
-**Feature branches** contain one or more commits to address one related feature or issue. Prefix your feature branch with `issue/issue-id` before you add the actual branch name. Example: `issue/\<id\>-\<add-my-feature\>`. To update any project dependencies, name your branch like `dependencies/\<dependencies-name\>`.
+### Feature branches
+
+Feature branches contain one or more commits to address one related feature/issue. Prefix your feature branch with `issue/issue-id` before you add the actual branch name. Example: `issue/\<id\>-\<add-my-feature\>`. To update any project dependencies, name your branch like `dependencies/\<dependencies-name\>`.
 
 ## Commit Messages
 
