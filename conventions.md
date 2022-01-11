@@ -8,7 +8,7 @@ Use **English** for all Cryptic-related GitHub posts (in issues, pull requests, 
 
 ## Branch Naming
 
-Use pull requests to add new commits to master (main) [branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches) that contains the actual version. Pull requests require two approvals. 
+Use pull requests to add new commits to master (main) [branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches) that contains the actual version. 
 
 ### Feature branches
 
@@ -28,14 +28,13 @@ To merge a feature branch into master, use the option **merge** (not squash or r
 
 ## Issues and Pull Requests
 
+The most important information in issue and pull requests are:  
+
 - **Title**: Shortly summarize the content but avoid special characters.
 - **Content/Description**: Add more information to the issue or pull request.
 
-When submitting an issue or pull request, fill out all other information requested in these predefined templates:
+When submitting an issue or pull request, fill out all other information requested in the predefined templates provided. Pull requests require two approvals. 
 
-- [Bug Report](https://github.com/cryptic-game/cryptic/blob/master/.github/ISSUE_TEMPLATE/BUG_REPORT.md)
-- [Feature Request](https://github.com/cryptic-game/cryptic/blob/master/.github/ISSUE_TEMPLATE/FEATURE_REQUEST.md)
-- [Pull Request Template](https://github.com/cryptic-game/cryptic/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
 
 ## Release Versioning / Hotfixes
 
