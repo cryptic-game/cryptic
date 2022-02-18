@@ -40,7 +40,7 @@ Anything from design to development will be helpful, no matter what skills you h
 
 ## Project Structure
 
-![project structure](https://raw.githubusercontent.com/cryptic-game/graphics/master/wallpaper/ablauf.png)
+<img src="https://raw.githubusercontent.com/cryptic-game/graphics/master/wallpaper/ablauf.png" width="700" />
 
 ## Roadmap
 
