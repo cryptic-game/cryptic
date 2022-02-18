@@ -1,4 +1,4 @@
-![cryptic](https://raw.githubusercontent.com/cryptic-game/graphics/master/wallpaper/cry_crack.png)
+<img src="https://user-images.githubusercontent.com/44207756/154739724-679a58f9-32ef-43e0-9cbc-a99fc4fb5d5e.png" width="1000" />
 
 # Cryptic
 
@@ -40,7 +40,7 @@ Anything from design to development will be helpful, no matter what skills you h
 
 ## Project Structure
 
-![project structure](https://raw.githubusercontent.com/cryptic-game/graphics/master/wallpaper/ablauf.png)
+<img src="https://raw.githubusercontent.com/cryptic-game/graphics/master/wallpaper/ablauf.png" width="700" />
 
 ## Roadmap
 
