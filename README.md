@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/1306575/147002513-dfe9cfea-f711-408d-8cfb-ecb6a53e96a8.png" width="400" />
+<img src="https://user-images.githubusercontent.com/44207756/154739724-679a58f9-32ef-43e0-9cbc-a99fc4fb5d5e.png" width="1000" />
 
 # Cryptic
 
